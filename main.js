@@ -65,12 +65,15 @@ var attacks = [[3, 1], [3, 2], [3, 3]];
 function Car(length, doors) {  
     //console.log(length, doors);
     if (length<7) {
+        alert("We cannot build that small car.");
         throw "We cannot build that small car.";
     }
     else if (doors<1) {
+        alert("We cannot enter a doorless car.");
         throw "We cannot enter a doorless car.";
     }
     else if (((length-3)/doors)<2) {
+        alert("We cannot fit that many doors in that car.");
         throw "We cannot fit that many doors in that car.";
     }
     else {
@@ -83,36 +86,26 @@ function Car(length, doors) {
         this.rearDoors = Math.floor(doors/2);
         this.body = (length-3)-(doors*2);
         this.top = {
-            component : " " + ("_").repeat(length-3)
+            component : "&nbsp;" + ("_").repeat(this.length-3)
         }
         this.body = {
-            component : "|" + ("[]").repeat(this.rearDoors) + (" ").repeat(this.body) + ("[]").repeat(this.frontDoors) + "\\"
+            component : "\n" + "|" + ("[]").repeat(this.rearDoors) + "&#176;".repeat(this.body) + ("[]").repeat(this.frontDoors) + "\\"
         };
         this.chassis = {
-            component : ("-o").repeat(this.rearAxle) + ("-").repeat(this.middle) + ("o-").repeat(this.frontAxle) + "'"
+            component : "\n" + ("-o").repeat(this.rearAxle) + ("-").repeat(this.middle) + ("o-").repeat(this.frontAxle) + "'"
         };
     }            
 }
 
 function testCars(length, doors) {
     var car = new Car(length, doors);
-    var canvas = document.getElementById("result");
-    var ctx = canvas.getContext("2d");
-    ctx.font = "30px Arial";
-    //var value = car.body.component + "<br>" + car.chassis.component;
-    ctx.fillText(car.top.component, 90, 50);
-    ctx.fillText(car.body.component, 90, 82);
-    ctx.fillText(car.chassis.component, 90, 110);
-
     //var value = car.body.component + car.chassis.component;
-    // $("#result").empty();
-    // $("#result").append("<div>" + car.top.component  + "</div>");
-    // $("#result").append("<div>" + car.body.component  + "</div>");
-    // $("#result").append("<div>" + car.chassis.component  + "</div>");
+    $("#result").empty();
+    $("#result").append(car.top.component);
+    $("#result").append(car.body.component);
+    $("#result").append(car.chassis.component);
 
 }
-
-
 
 // function updateResult(result) {
 //     $("#result").empty();
@@ -126,7 +119,7 @@ function testCars(length, doors) {
 //     }
 // }
 
-testCars(15,3);
+testCars(9,1);
 
 //console.log(testCars(7,1));
 
