@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code Wars Draw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12"
+                <h1 class= "title">Build a Car</h1>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div class="input-container"> -->
+                <div class="col-6">
+                    <div class="input-title">Enter the length of the car</div> 
+                    <input 
+                        type="text" 
+                        class="input" 
+                        title="calculator"
+                        placeholder="Enter operation"
+                        value="2+1"            
+                        onchange="calculate(this.value)">
+                </div>
+                <div class="col-6">
+                    <div class="input-title">Enter the number of doors for your car</div> 
+                    <input 
+                        type="text" 
+                        class="input" 
+                        title="calculator"
+                        placeholder="Enter operation"
+                        value="2+1"            
+                        onchange="calculate(this.value)">
+                </div>
+            <!-- </div> -->
+        </div>
+        <div class="row">
+            <div class="result-container">
+                <div class="title">Result</div> 
+                <canvas id="result" width="300" height="200"></canvas>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
