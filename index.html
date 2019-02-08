@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Code Wars Draw</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ship.png">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="main.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -29,27 +30,30 @@
                     <input 
                         type="text" 
                         class="input" 
+                        id="length-input"
                         title="calculator"
-                        placeholder="Enter operation"
-                        value="2+1"            
-                        onchange="calculate(this.value)">
+                        placeholder="7 or More">
                 </div>
                 <div class="col-6">
                     <div class="input-title">Enter the number of doors for your car</div> 
                     <input 
                         type="text" 
                         class="input" 
+                        id="doors-input"
                         title="calculator"
-                        placeholder="Enter operation"
-                        value="2+1"            
-                        onchange="calculate(this.value)">
+                        placeholder="At least 1">
                 </div>
             <!-- </div> -->
         </div>
         <div class="row">
+            <div class="col-12">
+                <button id="car-input">Draw</button>
+            </div>
+        </div>
+        <div class="row">
             <div class="result-container">
                 <div class="title">Result</div> 
-                <span id="result">3</span>
+                <span id="result"></span>
             </div>
         </div>
         </div>
