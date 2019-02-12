@@ -30,7 +30,7 @@
 
 .result-container {
     margin: 50px auto 0;
-    width: 40%;
+    width: 100% auto;
     font-size: 36px;
     color: #f1f2f4;
     text-align: center;
@@ -38,6 +38,7 @@
     line-height: 1.15;
     border: none;
     border-radius: 15px;
+    padding: 3%;
 }
 
 .result-container .title {
@@ -65,4 +66,26 @@
 #car-input:hover {
     background-color: #f1f2f4;
     color: #4F5E86;
+}
+
+.battleShipLink {
+    width: auto;
+    background-color: #4F5E86;
+    border: none;
+    color: #f1f2f4;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+}
+
+.canvas-container {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 25px;
 }

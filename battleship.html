@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="images/ship.png">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/car.js"></script>
+    <script src="js/battleship.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -20,13 +20,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12"
-                <h1 style="font-size: 40px; font-weight: bold">Build a Car</h1>
+                <h1 style="font-size: 40px; font-weight: bold">Play Battleship</h1>
             </div>
         </div>
         <div class="row">
             <!-- <div class="input-container"> -->
-                <div class="col-6">
-                    <div class="input-title">Enter the length of the car</div> 
+                <div class="col-4">
+                    <div class="input-title">Enter the letter</div> 
                     <input 
                         type="text" 
                         class="input" 
@@ -34,8 +34,8 @@
                         title="calculator"
                         placeholder="7 or More">
                 </div>
-                <div class="col-6">
-                    <div class="input-title">Enter the number of doors for your car</div> 
+                <div class="col-4">
+                    <div class="input-title">Enter number</div> 
                     <input 
                         type="text" 
                         class="input" 
@@ -43,22 +43,17 @@
                         title="calculator"
                         placeholder="At least 1">
                 </div>
-            <!-- </div> -->
+                <div class="col-4">
+                        <button id="car-input">Make your Move</button>                    
+                </div>
         </div>
         <div class="row">
-            <div class="col-12">
-                <button id="car-input">Draw</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="result-container">
+            <div class="canvas-container">
                 <div class="title">Result</div> 
-                <span id="result"></span>
-            </div>
-        </div>
-        <div class="row" style="text-align: center;">
-            <div class="battleshipLink">
-                <a href="battleship.html">Play Battleship</a>
+                <canvas id="myCanvas" width="350" height="250"
+                    style="background: url('images/waves.jpg');">
+                    Your browser does not support the canvas element.
+                </canvas>
             </div>
         </div>
         </div>

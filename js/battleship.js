@@ -61,58 +61,47 @@ $(document).ready(function(){
     var attacks = [[3, 1], [3, 2], [3, 3]];
     //console.log(damagedOrSunk(board, attacks), "{ sunk: 1, damaged: 0 , notTouched: 0, points: 1 }");
 
-    //Build a Car
-    function Car(length, doors) {  
-        //console.log(length, doors);
-        if (length<7) {
-            alert("We cannot build that small car.");
-            throw "We cannot build that small car.";
+    // var canvas = document.getElementById("myCanvas");
+    // var ctx = canvas.getContext("2d");
+    // ctx.fillStyle = "#0077be";
+    // ctx.fillRect(50, 50, 300, 200);
+
+    var drawGrid = function(w, h) {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext('2d');
+        ctx.canvas.width  = w;
+        ctx.canvas.height = h;    
+    
+        for (x=0;x<=w;x+=50) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+                ctx.stroke();            
         }
-        else if (doors<1) {
-            alert("We cannot enter a doorless car.");
-            throw "We cannot enter a doorless car.";
+        for (y=0;y<=h;y+=50) {
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
         }
-        else if (((length-3)/doors)<2) {
-            alert("We cannot fit that many doors in that car.");
-            throw "We cannot fit that many doors in that car.";
-        }
-        else {
-            this.length = length;
-            this.doors = doors;
-            this.middle = (length<14 ? (length-5) : length%2===0 ? 5:6);
-            this.frontAxle = (length<14) ? 1 : (Math.floor((length-14)/4) + 2);
-            this.rearAxle = (length<12) ? 1 : (Math.floor((length-12)/4) + 2);
-            this.frontDoors = Math.ceil(doors/2);
-            this.rearDoors = Math.floor(doors/2);
-            this.body = (length-3)-(doors*2);
-            this.top = {
-                component : "&nbsp;" + ("_").repeat(this.length-3)
-            }
-            this.body = {
-                component : "\n" + "|" + ("[]").repeat(this.rearDoors) + "⚬".repeat(this.body) + ("[]").repeat(this.frontDoors) + "\\"
-            };
-            this.chassis = {
-                component : "\n" + ("-o").repeat(this.rearAxle) + ("-").repeat(this.middle) + ("o-").repeat(this.frontAxle) + "'"
-            };
-        }            
-    }
 
-    function testCars(length, doors) {
-        var car = new Car(length, doors);
-        //var value = car.body.component + car.chassis.component;
-        $("#result").empty();
-        $("#result").append(car.top.component);
-        $("#result").append(car.body.component);
-        $("#result").append(car.chassis.component);
+        // var canvas = document.getElementById("myCanvas");
+        // var ctx = canvas.getContext("2d");
+        console.log(ctx);
+        ctx.fillStyle = "black";
+        ctx.font = "35px Arial Black";
+        ctx.fillText("A", 60, 40);
+        ctx.fillText("B", 110, 40);
+        ctx.fillText("C", 160, 40);
+        ctx.fillText("D", 210, 40);
+        ctx.fillText("E", 260, 40);
+        ctx.fillText("F", 310, 40);
+        ctx.fillText("1", 10, 90);
+        ctx.fillText("2", 10, 140);
+        ctx.fillText("3", 10, 190);
+        ctx.fillText("4", 10, 240);
+    };
 
-    }
+    
+    drawGrid(350, 250);
 
-    $('#car-input').click(function(){
-        var lengthIn = parseInt($("#length-input").val().trim());
-        var doorsIn = parseInt($("#doors-input").val().trim());
-        testCars(lengthIn,doorsIn);
-        $("#length-input").val('');
-        $("#doors-input").val('');
-    });
-
+    
 });
