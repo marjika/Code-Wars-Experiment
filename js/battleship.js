@@ -1,24 +1,24 @@
 $(document).ready(function(){
     //Battle Ships
-    function damagedOrSunk (board, attacks){
+    function damagedOrSunk (board, attack){
         var answer = { sunk : 0, damaged: 0, notTouched: 0, points: 0 };
+
+
         function Boat(num, length) {
             this.num = num;
             this.length = length;
             this.hits = 0;
             this.checkHit = function() {
-                for (var a = 0; a<attacks.length; a++) {
-                    var hitSpace = board[board.length-attacks[a][1]][attacks[a][0]-1];
-                    console.log(hitSpace);
-                    if (hitSpace===num) {
-                        this.length--;
-                        this.hits++;
-                        if (this.length===0) {
-                            answer.sunk++
-                            answer.points++
-                        }
+                var hitSpace = board[board.length-attack[1]][attack[0]-1];
+                console.log(hitSpace);
+                if (hitSpace===num) {
+                    this.length--;
+                    this.hits++;
+                    if (this.length===0) {
+                        answer.sunk++
+                        answer.points++
                     }
-                }
+                }                
                 if (this.hits===0) {
                     answer.points--;
                     answer.notTouched++;
@@ -54,12 +54,59 @@ $(document).ready(function(){
         return answer;
     }
 
-    var board = [ [0, 0, 1, 0],
-                [0, 0, 1, 0],
-                [0, 0, 1, 0] ];
+    var board = [ [0, 0, 0, 2, 0, 0], 
+                  [3, 0, 1, 0, 2, 0],
+                  [0, 3, 1, 0, 0, 2],
+                  [0, 0, 1, 0, 0, 0] ];
         
-    var attacks = [[3, 1], [3, 2], [3, 3]];
-    //console.log(damagedOrSunk(board, attacks), "{ sunk: 1, damaged: 0 , notTouched: 0, points: 1 }");
+    var attack = [3, 1];
+    //console.log(damagedOrSunk(board, attack), "{ sunk: 1, damaged: 0 , notTouched: 0, points: 1 }");
+
+    function Square(x, y) {
+        this.x = x;
+        this.y = y;
+        this.show = true;
+        this.val = 0;
+        this.current = function() {
+            if (this.show) {
+                drawSquare(this.x, this.y, this.val);
+            }
+        }
+    }
+
+    function Game(board) {
+        this.board = board;
+        this.createBoard = function() {
+            for (var row=0; row<board.length; row++) {
+                for (var square=0; square<board[row].length; square++) {
+                    let position = new Square(row, square);
+                    position.val = board[row][square];
+                    position.current();
+                }
+            }
+        }
+    }
+
+    function drawSquare(posx, posy, val) {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext('2d');
+        if (val===1) {
+            ctx.fillStyle = 'green';
+        }
+        else if (val===2) {
+            ctx.fillStyle = 'red';
+        }
+        else {
+            ctx.fillStyle = 'yellow';
+        }
+        var x = 50 + (posx*50);
+        var y = 50 + (posy*50);
+        ctx.fillRect(x, y, 50, 50);
+    } 
+
+    let temp = new Game(board);
+    console.log(temp);
+    temp.createBoard();
 
     // var canvas = document.getElementById("myCanvas");
     // var ctx = canvas.getContext("2d");
@@ -85,7 +132,7 @@ $(document).ready(function(){
 
         // var canvas = document.getElementById("myCanvas");
         // var ctx = canvas.getContext("2d");
-        console.log(ctx);
+        //console.log(ctx);
         ctx.fillStyle = "black";
         ctx.font = "35px Arial Black";
         ctx.fillText("A", 60, 40);
