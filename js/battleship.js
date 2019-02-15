@@ -1,67 +1,60 @@
 $(document).ready(function(){
     //Battle Ships
-
-    function damagedOrSunk (board, attack){
-        var answer = { sunk : 0, damaged: 0, notTouched: 0, points: 0 };
+     var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
 
 
         function Boat(num, length) {
-            this.num = num;
-            this.length = length;
-            this.hits = 0;
-            this.checkHit = function() {
-                var hitSpace = board[board.length-attack[1]][attack[0]-1];
-                console.log(hitSpace);
-                if (hitSpace===num) {
-                    this.length--;
-                    this.hits++;
-                    if (this.length===0) {
-                        answer.sunk++
-                        answer.points++
-                    }
-                }                
-                if (this.hits===0) {
-                    answer.points--;
-                    answer.notTouched++;
-                }
-                else if (this.hits>0 && this.length>0) {
-                    answer.points+=.5;
-                    answer.damaged++;
-                }
+            // this.checkHit = function() {
+            //     var hitSpace = board[board.length-attack[1]][attack[0]-1];
+            //     console.log(hitSpace);
+            //     if (hitSpace===num) {
+            //         this.length--;
+            //         this.hits++;
+            //         if (this.length===0) {
+            //             answer.sunk++
+            //             answer.points++
+            //         }
+            //     }                
+            //     if (this.hits===0) {
+            //         answer.points--;
+            //         answer.notTouched++;
+            //     }
+            //     else if (this.hits>0 && this.length>0) {
+            //         answer.points+=.5;
+            //         answer.damaged++;
+            //     }
+            // }
+            this.checkSunk = function() {
+                console.log(boatArr);
             }
         }
         var boatArr = [0,0,0]
 
-        for (var i = 0; i < board.length; i++) {
-            for (var j = 0; j < board[i].length; j++) {
-                if (board[i][j]===1) {
-                    boatArr[0]++;
-                }
-                else if (board[i][j]===2) {
-                    boatArr[1]++;
-                }
-                else if (board[i][j]===3) {
-                    boatArr[2]++;
-                }
-            }
-        }
+        // for (var i = 0; i < board.length; i++) {
+        //     for (var j = 0; j < board[i].length; j++) {
+        //         if (board[i][j]===1) {
+        //             boatArr[0]++;
+        //         }
+        //         else if (board[i][j]===2) {
+        //             boatArr[1]++;
+        //         }
+        //         else if (board[i][j]===3) {
+        //             boatArr[2]++;
+        //         }
+        //     }
+        // }
 
-        for (var b = 0; b<boatArr.length; b++) {
-            if (boatArr[b]>0) {
-                let boat = new Boat((b+1), boatArr[b]);
-                boat.checkHit();
-            }
-        }            
-        return answer;
-    }
-
-    var board = [ [0, 0, 0, 2, 0, 0], 
-                  [3, 0, 1, 0, 2, 0],
-                  [0, 3, 1, 0, 0, 2],
-                  [0, 0, 1, 0, 0, 0] ];
+        // for (var b = 0; b<boatArr.length; b++) {
+        //     if (boatArr[b]>0) {
+        //         let boat = new Boat((b+1), boatArr[b]);
+        //         boat.checkSunk();
+        //     }
+        // }            
+        var board = [ [0, 0, 0, 2, 0, 0], 
+                    [3, 0, 1, 0, 2, 0],
+                    [0, 3, 1, 0, 0, 2],
+                    [0, 0, 1, 0, 0, 0] ];
         
-    var attack = [2, 2];
-    //console.log(damagedOrSunk(board, attack), "{ sunk: 1, damaged: 0 , notTouched: 0, points: 1 }");
 
     function Square(x, y) {
         this.x = x;
@@ -72,6 +65,10 @@ $(document).ready(function(){
             if (this.show && this.val!==0) {
                 console.log("current");
                 drawSquare(this.x, this.y, this.val);
+            }
+            else if (this.show && this.val===0) {
+                console.log("current");
+                drawMiss(this.x, this.y);
             }
         }
     }
@@ -112,7 +109,7 @@ $(document).ready(function(){
                 }
                 //this.game.board[pos].current();
             }
-            //drawGrid(350, 250);
+            //checkStats();
         }
     }
 
@@ -135,6 +132,16 @@ $(document).ready(function(){
         //console.log(x, y, ctx);
         ctx.fillRect(x, y, 50, 50);
     } 
+
+    function drawMiss(posx, posy) {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext('2d');
+        var x = 55 + (posx*50);
+        var y = 80 + (posy*50);
+        ctx.fillStyle = "white";
+        ctx.font = "15px Arial";
+        ctx.fillText("MISS", x, y);
+    }
 
 
     var drawGrid = function(w, h) {
@@ -174,10 +181,57 @@ $(document).ready(function(){
     let temp = new Play(board);
     drawGrid(350, 250);
     temp.game.createBoard();
-    temp.checkHit(attack);
-    temp.game.clearCanvas();
-    temp.game.redrawBoard();
     //temp.checkHit(attack);
-    //console.log(temp.game.board);
-       
+    //temp.game.clearCanvas();
+    //temp.game.redrawBoard();
+
+    $('#hit-input').click(function(){
+        var letterInput = ($("#X-input").val().trim()).toUpperCase();
+        var xCoord=0;
+        if (letterInput==="A") {
+            xCoord = 0;
+        }
+        else if (letterInput==="B") {
+            xCoord = 1;
+        }
+        else if (letterInput==="C") {
+            xCoord = 2;
+        }
+        else if (letterInput==="D") {
+            xCoord = 3;
+        }
+        else if (letterInput==="E") {
+            xCoord = 4;
+        }
+        else if (letterInput==="F") {
+            xCoord = 5;
+        }
+        else {
+            alert("Please enter coodinates of a letter (A,B,C,D,E,F) and number(1,2,3,4)");
+            throw console.error("not a correct letter");            
+        }
+        var yCoord = (parseInt($("#Y-input").val().trim())-1);
+        if (yCoord>3 || yCoord<0) {
+            alert("Please enter coodinates of a letter (A,B,C,D,E,F) and number(1,2,3,4)");
+            throw error("not a correct number");
+        }
+        console.log(letterInput, xCoord, yCoord);
+        temp.checkHit([xCoord, yCoord]);
+        temp.game.clearCanvas();
+        temp.game.redrawBoard();
+        //testCars(,(ycoord-1));
+        $("#X-input").val('');
+        $("#Y-input").val('');
+    });
+
+    // function checkStats() {
+    //     stats.misses = 0;
+    //    for (var pos=0; pos<temp.board.length; pos++) {
+    //        if (temp.board[pos].show===true && temp.board[pos].val===0) {
+    //            stats.misses++
+    //        }
+    //    }
+    //     console.log(stats);
+    // }
+  
 });

@@ -12,44 +12,50 @@
     <script src="js/battleship.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/battleship.css">
 
 </head>
 
 <body>
     <div class="container">
         <div class="row">
+            <ul>
+                <li class="hits"><p>Hits: </p></li>
+                <li class="misses"><p>Misses: </p></li>
+                <li class="ships-sunk"><p>Sunk: </p></li>
+                <li class="score"><p>Score: </p></li>
+            </ul>
+        </div>
+        <div class="row">
             <div class="col-12"
                 <h1 style="font-size: 40px; font-weight: bold">Play Battleship</h1>
             </div>
         </div>
+        <div class="row" style="text-align: center;">
+                <h3 style="font-size: 20px; font-weight: bold">Pick a space on the grid to find a ship.</h3>
+        </div>
         <div class="row">
-            <!-- <div class="input-container"> -->
                 <div class="col-4">
-                    <div class="input-title">Enter the letter</div> 
+                    <div class="gridX-input">Enter the letter</div> 
                     <input 
                         type="text" 
                         class="input" 
-                        id="length-input"
-                        title="calculator"
-                        placeholder="7 or More">
+                        id="X-input">
                 </div>
                 <div class="col-4">
-                    <div class="input-title">Enter number</div> 
+                    <div class="gridY-input">Enter number</div> 
                     <input 
                         type="text" 
                         class="input" 
-                        id="doors-input"
-                        title="calculator"
-                        placeholder="At least 1">
+                        id="Y-input">
                 </div>
                 <div class="col-4">
-                        <button id="car-input">Make your Move</button>                    
+                        <button id="hit-input">Make your Move</button>                    
                 </div>
         </div>
         <div class="row">
             <div class="canvas-container">
-                <div class="title">Result</div> 
+                <div class="title"></div> 
                 <canvas id="myCanvas" width="350" height="250"
                     style="background: url('images/waves.jpg');">
                     Your browser does not support the canvas element.
