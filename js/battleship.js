@@ -2,60 +2,52 @@ $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
 
+        var boatArr = [[0, []], [0, []], [0, []]];
 
-        function Boat(num, length) {
-            // this.checkHit = function() {
-            //     var hitSpace = board[board.length-attack[1]][attack[0]-1];
-            //     console.log(hitSpace);
-            //     if (hitSpace===num) {
-            //         this.length--;
-            //         this.hits++;
-            //         if (this.length===0) {
-            //             answer.sunk++
-            //             answer.points++
-            //         }
-            //     }                
-            //     if (this.hits===0) {
-            //         answer.points--;
-            //         answer.notTouched++;
-            //     }
-            //     else if (this.hits>0 && this.length>0) {
-            //         answer.points+=.5;
-            //         answer.damaged++;
-            //     }
-            // }
-            this.checkSunk = function() {
-                console.log(boatArr);
+        //making boat array to check hits and score
+        function createBoatArr() {
+            for (var i = 0; i < board.length; i++) {
+                for (var j = 0; j < board[i].length; j++) {
+                    if (board[i][j]===1) {
+                        boatArr[0][0]++;
+                        boatArr[0][1].push([j,i]);
+
+                    }
+                    else if (board[i][j]===2) {
+                        boatArr[1][0]++;
+                        boatArr[1][1].push([j,i]);
+                    }
+                    else if (board[i][j]===3) {
+                        boatArr[2][0]++;
+                        boatArr[2][1].push([j,i]);
+                    }
+                }
             }
         }
-        var boatArr = [0,0,0]
-
-        // for (var i = 0; i < board.length; i++) {
-        //     for (var j = 0; j < board[i].length; j++) {
-        //         if (board[i][j]===1) {
-        //             boatArr[0]++;
-        //         }
-        //         else if (board[i][j]===2) {
-        //             boatArr[1]++;
-        //         }
-        //         else if (board[i][j]===3) {
-        //             boatArr[2]++;
-        //         }
-        //     }
-        // }
-
-        // for (var b = 0; b<boatArr.length; b++) {
-        //     if (boatArr[b]>0) {
-        //         let boat = new Boat((b+1), boatArr[b]);
-        //         boat.checkSunk();
-        //     }
-        // }            
+            
+        //checks to see if hit is in boat array to calulate sunk
+        function checkSunk([x,y]) {
+            for (var b = 0; b<boatArr.length; b++) {
+                for (var coord = 0; coord < boatArr[b][1].length; coord++) {
+                    if (boatArr[b][1][coord][0]===x && boatArr[b][1][coord][1]===y) {
+                        boatArr[b][0]--;
+                        console.log(boatArr[b]);
+                        if (boatArr[b][0]===0) {
+                            stats.sunk++;
+                            $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
+                            console.log("sunk " + stats.sunk);
+                        }
+                    }
+                }
+            }
+        }
+            
         var board = [ [0, 0, 0, 2, 0, 0], 
                     [3, 0, 1, 0, 2, 0],
                     [0, 3, 1, 0, 0, 2],
                     [0, 0, 1, 0, 0, 0] ];
         
-
+    //class for each individual square
     function Square(x, y) {
         this.x = x;
         this.y = y;
@@ -63,16 +55,15 @@ $(document).ready(function(){
         this.val = 0;
         this.current = function() {
             if (this.show && this.val!==0) {
-                console.log("current");
                 drawSquare(this.x, this.y, this.val);
             }
             else if (this.show && this.val===0) {
-                console.log("current");
                 drawMiss(this.x, this.y);
             }
         }
     }
 
+    //class for game creation and canvas draw
     function Game(board) {
         this.board = [];
 
@@ -81,7 +72,6 @@ $(document).ready(function(){
                 for (var square=0; square<board[row].length; square++) {
                     let position = new Square(square, row);
                     position.val = board[row][square];
-                    //console.log(row, square, position.val);
                     this.board.push(position);
                     position.current();
                 }
@@ -100,6 +90,7 @@ $(document).ready(function(){
         }
     }
 
+    //class for play of actual game
     function Play(board) {
         this.game = new Game(board);
         this.checkHit = function(hit) {
@@ -107,17 +98,15 @@ $(document).ready(function(){
                 if (this.game.board[pos].x===hit[0] && this.game.board[pos].y===hit[1]) {
                     this.game.board[pos].show = true;
                 }
-                //this.game.board[pos].current();
             }
             checkStats();
         }
     }
 
+    //draws the square for a hit
     function drawSquare(posx, posy, val) {
-        console.log("next", posx, posy, val);
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext('2d');
-        //ctx.clearRect(0, 0, 350, 250);
         if (val===1) {
             ctx.fillStyle = 'green';
         }
@@ -129,10 +118,10 @@ $(document).ready(function(){
         }
         var x = 50 + (posx*50);
         var y = 50 + (posy*50);
-        //console.log(x, y, ctx);
         ctx.fillRect(x, y, 50, 50);
     } 
 
+    //draws a square for a miss
     function drawMiss(posx, posy) {
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext('2d');
@@ -143,9 +132,8 @@ $(document).ready(function(){
         ctx.fillText("MISS", x, y);
     }
 
-
+    //clears and draws the board
     var drawGrid = function(w, h) {
-
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, w, h);
@@ -174,17 +162,15 @@ $(document).ready(function(){
         ctx.fillText("2", 10, 140);
         ctx.fillText("3", 10, 190);
         ctx.fillText("4", 10, 240);
-        //console.log(temp);
-        //temp.createBoard();
     };
 
+    //creates and starts a new game
     let temp = new Play(board);
+    createBoatArr();
     drawGrid(350, 250);
     temp.game.createBoard();
-    //temp.checkHit(attack);
-    //temp.game.clearCanvas();
-    //temp.game.redrawBoard();
 
+    //when user enters a coordinate, error handling
     $('#hit-input').click(function(){
         var letterInput = ($("#X-input").val().trim()).toUpperCase();
         var xCoord=0;
@@ -215,15 +201,15 @@ $(document).ready(function(){
             alert("Please enter coodinates of a letter (A,B,C,D,E,F) and number(1,2,3,4)");
             throw error("not a correct number");
         }
-        console.log(letterInput, xCoord, yCoord);
         temp.checkHit([xCoord, yCoord]);
+        checkSunk([xCoord, yCoord]);
         temp.game.clearCanvas();
         temp.game.redrawBoard();
-        //testCars(,(ycoord-1));
         $("#X-input").val('');
         $("#Y-input").val('');
     });
 
+    //displays hits and misses
     function checkStats() {
         stats.misses = 0;
         stats.hits = 0;
@@ -235,7 +221,6 @@ $(document).ready(function(){
                 stats.hits++
             }
        }
-        console.log(stats);
         $("#hits").html("<p>Hits: " + stats.hits + "</p>");
         $("#misses").html("<p>Misses: " + stats.misses + "</p>");
     }
