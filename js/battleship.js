@@ -109,7 +109,7 @@ $(document).ready(function(){
                 }
                 //this.game.board[pos].current();
             }
-            //checkStats();
+            checkStats();
         }
     }
 
@@ -224,14 +224,20 @@ $(document).ready(function(){
         $("#Y-input").val('');
     });
 
-    // function checkStats() {
-    //     stats.misses = 0;
-    //    for (var pos=0; pos<temp.board.length; pos++) {
-    //        if (temp.board[pos].show===true && temp.board[pos].val===0) {
-    //            stats.misses++
-    //        }
-    //    }
-    //     console.log(stats);
-    // }
+    function checkStats() {
+        stats.misses = 0;
+        stats.hits = 0;
+        for (var pos=0; pos<temp.game.board.length; pos++) {
+            if (temp.game.board[pos].show===true && temp.game.board[pos].val===0) {
+               stats.misses++
+            }
+            else if (temp.game.board[pos].show===true && temp.game.board[pos].val>0) {
+                stats.hits++
+            }
+       }
+        console.log(stats);
+        $("#hits").html("<p>Hits: " + stats.hits + "</p>");
+        $("#misses").html("<p>Misses: " + stats.misses + "</p>");
+    }
   
 });
