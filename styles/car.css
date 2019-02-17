@@ -81,3 +81,18 @@
     border-radius: 15px;
 }
 
+.battleshipLink {
+    background-color: aquamarine;
+    padding: 5px;
+}
+
+a:hover {
+  color: gray;
+  text-decoration: none; 
+
+}
+
+a {
+  text-decoration: none; 
+  color: black; 
+}

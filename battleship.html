@@ -35,23 +35,26 @@
                 <h3 style="font-size: 20px; font-weight: bold">Pick a space on the grid to find a ship.</h3>
         </div>
         <div class="row">
-                <div class="col-4">
-                    <div class="gridX-input">Enter the letter</div> 
-                    <input 
-                        type="text" 
-                        class="input" 
-                        id="X-input">
-                </div>
-                <div class="col-4">
-                    <div class="gridY-input">Enter number</div> 
-                    <input 
-                        type="text" 
-                        class="input" 
-                        id="Y-input">
-                </div>
-                <div class="col-4">
-                        <button id="hit-input">Make your Move</button>                    
-                </div>
+            <div class="col-4">
+                <div class="gridX-input">Enter the letter</div> 
+                <input 
+                    type="text" 
+                    class="input" 
+                    id="X-input">
+            </div>
+            <div class="col-4">
+                <div class="gridY-input">Enter number</div> 
+                <select type="text" class="input" id="Y-input">
+                    <option selected disabled>Choose a number</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <button id="hit-input">Make your Move</button>                    
+            </div>
         </div>
         <div class="row">
             <div class="canvas-container">
@@ -62,7 +65,22 @@
                 </canvas>
             </div>
         </div>
+        <div class="row" style="text-align: center;">
+            <div class="carDrawLink">
+                <a href="index.html">ASCII cars</a>
+            </div>
         </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div id="modal-caption">You win</div>
+            <span class="close">&times; Close</span>
+        </div>
+
     </div>
     
 </body>

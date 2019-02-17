@@ -36,6 +36,10 @@ $(document).ready(function(){
                             stats.sunk++;
                             $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
                             console.log("sunk " + stats.sunk);
+                            if (stats.sunk>=3) {
+                                console.log("You win");
+                                displayModal("You win!");
+                            }
                         }
                     }
                 }
@@ -216,6 +220,10 @@ $(document).ready(function(){
         for (var pos=0; pos<temp.game.board.length; pos++) {
             if (temp.game.board[pos].show===true && temp.game.board[pos].val===0) {
                stats.misses++
+               if (stats.misses>=8) {
+                    console.log("You lose");
+                    displayModal("You lose!");
+                }
             }
             else if (temp.game.board[pos].show===true && temp.game.board[pos].val>0) {
                 stats.hits++
@@ -223,6 +231,30 @@ $(document).ready(function(){
        }
         $("#hits").html("<p>Hits: " + stats.hits + "</p>");
         $("#misses").html("<p>Misses: " + stats.misses + "</p>");
+    }
+
+    // Get the modal
+    //var modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        $("#myModal").hide();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == $("#myModal")) {
+            $("#myModal").hide();
+        }
+    }
+
+    function displayModal(text) {
+        // var modal = $("#myModal");
+        $("#modal-caption").html("<p>" + text + "</p>");
+        $("#myModal").show();
     }
   
 });
