@@ -2,6 +2,20 @@ $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
 
+     var temp;
+            
+     var boards = [ [ [0, 0, 0, 2, 0, 0], [3, 0, 1, 0, 2, 0], [0, 3, 1, 0, 0, 2], [0, 0, 1, 0, 0, 0] ],
+                    [ [3, 0, 0, 2, 2, 2], [3, 0, 0, 1, 0, 0], [3, 0, 0, 0, 1, 0], [3, 0, 0, 0, 0, 1] ],
+                    [ [0, 1, 2, 0, 0, 0], [0, 1, 0, 2, 0, 0], [0, 1, 0, 0, 2, 0], [0, 0, 3, 3, 0, 2] ],
+                    [ [0, 0, 0, 3, 0, 0], [0, 0, 3, 1, 1, 1], [0, 3, 0, 0, 2, 0], [3, 0, 0, 0, 2, 0] ],
+                    [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
+
+     var index = Math.floor(Math.random() * (boards.length));
+     console.log(index);
+     var board = boards[index];
+     boards = boards.splice(index, 1);
+     console.log(board);
+
         var boatArr = [[0, []], [0, []], [0, []]];
 
         //making boat array to check hits and score
@@ -31,13 +45,10 @@ $(document).ready(function(){
                 for (var coord = 0; coord < boatArr[b][1].length; coord++) {
                     if (boatArr[b][1][coord][0]===x && boatArr[b][1][coord][1]===y) {
                         boatArr[b][0]--;
-                        console.log(boatArr[b]);
                         if (boatArr[b][0]===0) {
                             stats.sunk++;
                             $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
-                            console.log("sunk " + stats.sunk);
                             if (stats.sunk>=3) {
-                                console.log("You win");
                                 displayModal("You win!");
                             }
                         }
@@ -45,11 +56,10 @@ $(document).ready(function(){
                 }
             }
         }
-            
-        var board = [ [0, 0, 0, 2, 0, 0], 
-                    [3, 0, 1, 0, 2, 0],
-                    [0, 3, 1, 0, 0, 2],
-                    [0, 0, 1, 0, 0, 0] ];
+
+        function calculateScore() {
+            return (stats.hits - (stats.misses/2) + (stats.sunk*5));
+        }
         
     //class for each individual square
     function Square(x, y) {
@@ -169,10 +179,12 @@ $(document).ready(function(){
     };
 
     //creates and starts a new game
-    let temp = new Play(board);
-    createBoatArr();
-    drawGrid(350, 250);
-    temp.game.createBoard();
+    function startGame() {
+        temp = new Play(board);
+        createBoatArr();
+        drawGrid(350, 250);
+        temp.game.createBoard();
+    }
 
     //when user enters a coordinate, error handling
     $('#hit-input').click(function(){
@@ -221,7 +233,6 @@ $(document).ready(function(){
             if (temp.game.board[pos].show===true && temp.game.board[pos].val===0) {
                stats.misses++
                if (stats.misses>=8) {
-                    console.log("You lose");
                     displayModal("You lose!");
                 }
             }
@@ -252,9 +263,25 @@ $(document).ready(function(){
     }
 
     function displayModal(text) {
+        stats.score = calculateScore();
         // var modal = $("#myModal");
         $("#modal-caption").html("<p>" + text + "</p>");
+        $("#final-score").html("<p>Your score: " + stats.score + "</p>");
         $("#myModal").show();
     }
+
+    $('#restart-button').click(function(){
+        $("#myModal").hide();
+        stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
+        boatArr = [[0, []], [0, []], [0, []]];
+        index = Math.floor(Math.random() * boards.length);
+        board = boards[index];
+        temp = new Play(board);
+        createBoatArr();
+        drawGrid(350, 250);
+        temp.game.createBoard();
+    });
+
+    startGame();
   
 });
