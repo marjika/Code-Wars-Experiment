@@ -1,10 +1,19 @@
 * {
     text-align: center;
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-family: 'Kanit', sans-serif;
+}
+
+html {
+    height:100vh;
 }
 
 .body {
-    background: #a0a8bd;
+    
+    background-image: url("../images/waveBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: auto;
     text-align: center;
 }
 
@@ -99,3 +108,23 @@ ul {
     text-decoration: none; 
     color: black; 
 }
+
+#battleship-title, #gameplay {
+    background: rgba(220, 220, 220, 0.50);
+    font-weight: bold;
+    border-radius: 25px;
+    padding-top: 10px;
+  }
+
+  #battleship-title {
+    font-size: 45px;
+    width:100%;
+    padding-bottom: 10px;
+  }
+
+  #gameplay {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width:90%;
+      padding-bottom: 20px;
+  }

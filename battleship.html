@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="images/ship.png">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <script src="js/battleship.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<div class="body">
     <div class="container">
         <div class="row">
             <ul>
@@ -26,14 +26,19 @@
                 <li id="ships-sunk"><p>Sunk: </p></li>
             </ul>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h1 style="font-size: 40px; font-weight: bold">Play Battleship</h1>
+        <div class="row" style="text-align: center;">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div id="battleship-title">
+                <h1>Play Battleship</h1>
+                </div>
             </div>
+            <div class="col-4"></div>
         </div>
  
         <div class="row">
             <div class="col-6">
+                <div id="gameplay">
                 <div class="row">
                     <div class="col-12" style="padding-top: 20px">
                         <h3 style="font-size: 20px; font-weight: bold">Pick a space on the grid to find a ship.</h3>
@@ -65,7 +70,8 @@
                     <div class="col-12" style="padding-top: 20px">
                         <button id="hit-input">Make your Move</button>
                     </div>
-                </div>                    
+                </div> 
+                </div>                   
             </div>
             <div class="col-6">
                 <div class="canvas-container">
@@ -98,6 +104,6 @@
 
     </div>
     
-</body>
+</div>
 
 </html>
