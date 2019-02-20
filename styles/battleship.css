@@ -59,7 +59,7 @@ ul {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 150px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -75,22 +75,49 @@ ul {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 30%;
+    border-radius: 12px;
   }
   
   /* The Close Button */
   .close {
-    color: #aaaaaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    background-color: aquamarine;
+    padding: 10px 24px;
+    border-radius: 12px;
+    max-width: 30%;
+    margin-left: 35%;
+    border: 1px solid #888;
   }
   
   .close:hover,
   .close:focus {
-    color: #000;
+    color: white;
     text-decoration: none;
     cursor: pointer;
+    background-color: rgb(83, 181, 211);
+  }
+
+  #restart-button {
+    max-width: 40%;;
+    padding: 10px 24px;
+    border-radius: 12px;
+    background-color: aquamarine;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 30%
+  }
+
+  #restart-button:hover, #restart-button:focus {
+    background-color: rgb(83, 181, 211);
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #modal-caption {
+      font-size: 28px;
   }
 
   .carDrawLink {
@@ -101,7 +128,6 @@ ul {
   a:hover {
     color: gray;
     text-decoration: none; 
-
   }
 
   a {
