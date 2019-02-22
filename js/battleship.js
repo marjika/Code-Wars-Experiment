@@ -1,15 +1,18 @@
+//more styling, error handling in modal, more boards, instructioons
 $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
 
      var temp;
             
-     var boards = [ [ [0, 0, 0, 2, 0, 0], [3, 0, 1, 0, 2, 0], [0, 3, 1, 0, 0, 2], [0, 0, 1, 0, 0, 0] ],
-                    [ [3, 0, 0, 2, 2, 2], [3, 0, 0, 1, 0, 0], [3, 0, 0, 0, 1, 0], [3, 0, 0, 0, 0, 1] ],
-                    [ [0, 1, 2, 0, 0, 0], [0, 1, 0, 2, 0, 0], [0, 1, 0, 0, 2, 0], [0, 0, 3, 3, 0, 2] ],
-                    [ [0, 0, 0, 3, 0, 0], [0, 0, 3, 1, 1, 1], [0, 3, 0, 0, 2, 0], [3, 0, 0, 0, 2, 0] ],
-                    [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
+     var boardList = [ [ [0, 0, 0, 2, 0, 0], [3, 0, 1, 0, 2, 0], [0, 3, 1, 0, 0, 2], [0, 0, 1, 0, 0, 0] ],
+                     [ [3, 0, 0, 2, 2, 2], [3, 0, 0, 1, 0, 0], [3, 0, 0, 0, 1, 0], [3, 0, 0, 0, 0, 1] ],
+                     [ [0, 1, 2, 0, 0, 0], [0, 1, 0, 2, 0, 0], [0, 1, 0, 0, 2, 0], [0, 0, 3, 3, 0, 2] ],
+                     [ [0, 0, 0, 3, 0, 0], [0, 0, 3, 1, 1, 1], [0, 3, 0, 0, 2, 0], [3, 0, 0, 0, 2, 0] ],
+                     [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
 
+     
+     var boards = [...boardList];
      var index = Math.floor(Math.random() * (boards.length));
      var board = boards[index];
 
@@ -45,7 +48,7 @@ $(document).ready(function(){
                         if (boatArr[b][0]===0) {
                             stats.sunk++;
                             $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
-                            if (stats.sunk>=1) {
+                            if (stats.sunk>=3) {
                                 displayModal("You win!");
                             }
                         }
@@ -177,9 +180,11 @@ $(document).ready(function(){
 
     //creates and starts a new game
     function startGame() {
-        console.log(index);
         boards.splice(index, 1);
-        console.log(boards, board);
+        if (boards<1) {
+            boards = [...boardList];
+        }
+        console.log(board);
         temp = new Play(board);
         createBoatArr();
         drawGrid(350, 250);
@@ -209,13 +214,11 @@ $(document).ready(function(){
             xCoord = 5;
         }
         else {
-            alert("Please enter coodinates of a letter (A,B,C,D,E,F) and number(1,2,3,4)");
-            throw console.error("not a correct letter");            
+            displayModal("Please enter coodinates of a letter (A,B,C,D,E,F) and number (1,2,3,4)");            
         }
         var yCoord = (parseInt($("#Y-input").val().trim())-1);
         if (yCoord>3 || yCoord<0) {
-            alert("Please enter coodinates of a letter (A,B,C,D,E,F) and number(1,2,3,4)");
-            throw error("not a correct number");
+            displayModal("Please enter coodinates of a letter (A,B,C,D,E,F) and number (1,2,3,4)");
         }
         temp.checkHit([xCoord, yCoord]);
         checkSunk([xCoord, yCoord]);
@@ -243,9 +246,6 @@ $(document).ready(function(){
         $("#hits").html("<p>Hits: " + stats.hits + "</p>");
         $("#misses").html("<p>Misses: " + stats.misses + "</p>");
     }
-
-    // Get the modal
-    //var modal = document.getElementById('myModal');
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
