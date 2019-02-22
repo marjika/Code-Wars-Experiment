@@ -11,10 +11,7 @@ $(document).ready(function(){
                     [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
 
      var index = Math.floor(Math.random() * (boards.length));
-     console.log(index);
      var board = boards[index];
-     boards = boards.splice(index, 1);
-     console.log(board);
 
         var boatArr = [[0, []], [0, []], [0, []]];
 
@@ -48,7 +45,7 @@ $(document).ready(function(){
                         if (boatArr[b][0]===0) {
                             stats.sunk++;
                             $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
-                            if (stats.sunk>=3) {
+                            if (stats.sunk>=1) {
                                 displayModal("You win!");
                             }
                         }
@@ -180,6 +177,9 @@ $(document).ready(function(){
 
     //creates and starts a new game
     function startGame() {
+        console.log(index);
+        boards.splice(index, 1);
+        console.log(boards, board);
         temp = new Play(board);
         createBoatArr();
         drawGrid(350, 250);
@@ -273,13 +273,13 @@ $(document).ready(function(){
     $('#restart-button').click(function(){
         $("#myModal").hide();
         stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
+        $("#hits").html("<p>Hits: 0</p>");
+        $("#misses").html("<p>Misses: 0</p>");
+        $("#ships-sunk").html("<p>Sunk: 0</p>");
         boatArr = [[0, []], [0, []], [0, []]];
         index = Math.floor(Math.random() * boards.length);
         board = boards[index];
-        temp = new Play(board);
-        createBoatArr();
-        drawGrid(350, 250);
-        temp.game.createBoard();
+        startGame();
     });
 
     startGame();
