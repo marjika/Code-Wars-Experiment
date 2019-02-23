@@ -20,11 +20,33 @@
 <div class="body">
     <div class="container">
         <div class="row">
-            <ul>
-                <li id="hits"><p>Hits: 0</p></li>
-                <li id="misses"><p>Misses: 0</p></li>
-                <li id="ships-sunk"><p>Sunk: 0</p></li>
-            </ul>
+            <div class="col-6">
+                <a class="trigger_popup_fricc">Instructions</a>
+
+                <div class="hover_bkgr_fricc">
+                    <span class="helper"></span>
+                    <div>
+                        <div class="popupCloseButton">X</div>
+                        <p>Play Battleship
+                        <br />You are looking for three ships in the grid
+                        <br />below which vary in size from two to four
+                        <br />spaces. Choose a square of the grid by picking
+                        <br />a letter and number and pressing the button.
+                        <br />A color-filled square indicates a boat and
+                        <br />'MISS' means no ship is hidden there. You can 
+                        <br />miss 10 times before you lose. Each hit is 
+                        <br />worth one point and a miss loses 1/2 point.
+                        <br />A sunk ship is 5 points. Good luck!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <ul id="stats-navbar">
+                    <li id="hits"><p>Hits: 0</p></li>
+                    <li id="misses"><p>Misses: 0</p></li>
+                    <li id="ships-sunk"><p>Sunk: 0</p></li>
+                </ul>
+            </div>
         </div>
         <div class="row" style="text-align: center;">
             <div class="col-4"></div>
@@ -77,7 +99,7 @@
                 <div class="canvas-container">
                     <div class="title"></div> 
                     <canvas id="myCanvas" width="350" height="250"
-                        style="background: url('images/waves.jpg');">
+                        style="background: url('images/waves2.jpg');">
                         Your browser does not support the canvas element.
                     </canvas>
                 </div>

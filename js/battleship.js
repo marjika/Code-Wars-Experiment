@@ -38,6 +38,14 @@ $(document).ready(function(){
                 }
             }
         }
+
+        function animate(){
+            $('#stats-navbar').attr('class', 'enabled');
+            setTimeout(function(){ 
+                $('#stats-navbar').attr('class', '');
+            }, 2000);
+            console.log("animate ran");
+        }
             
         //checks to see if hit is in boat array to calulate sunk
         function checkSunk([x,y]) {
@@ -47,6 +55,7 @@ $(document).ready(function(){
                         boatArr[b][0]--;
                         if (boatArr[b][0]===0) {
                             stats.sunk++;
+                            animate();
                             $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
                             if (stats.sunk>=3) {
                                 displayModal("You win!");
@@ -122,13 +131,13 @@ $(document).ready(function(){
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext('2d');
         if (val===1) {
-            ctx.fillStyle = 'green';
+            ctx.fillStyle = '#AED9DA';
         }
         else if (val===2) {
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = '#EDFAFD';
         }
         else {
-            ctx.fillStyle = 'yellow';
+            ctx.fillStyle = '#355155';
         }
         var x = 50 + (posx*50);
         var y = 50 + (posy*50);
@@ -224,8 +233,8 @@ $(document).ready(function(){
         checkSunk([xCoord, yCoord]);
         temp.game.clearCanvas();
         temp.game.redrawBoard();
-        $("#X-input").val('');
-        $("#Y-input").val('');
+        $("#X-input").val('Choose a letter');
+        $("#Y-input").val('Choose a number');
     });
 
     //displays hits and misses
@@ -281,6 +290,16 @@ $(document).ready(function(){
         board = boards[index];
         startGame();
     });
+
+    $(".trigger_popup_fricc").click(function(){
+        $('.hover_bkgr_fricc').show();
+     });
+     $('.hover_bkgr_fricc').click(function(){
+         $('.hover_bkgr_fricc').hide();
+     });
+     $('.popupCloseButton').click(function(){
+         $('.hover_bkgr_fricc').hide();
+     });
 
     startGame();
   
