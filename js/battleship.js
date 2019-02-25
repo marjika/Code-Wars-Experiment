@@ -1,4 +1,4 @@
-//more styling, error handling in modal, more boards, instructioons
+//more styling, more boards, instructioons
 $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
@@ -40,9 +40,9 @@ $(document).ready(function(){
         }
 
         function animate(){
-            $('#stats-navbar').attr('class', 'enabled');
+            $('ul').attr('class', 'enabled');
             setTimeout(function(){ 
-                $('#stats-navbar').attr('class', '');
+                $('ul').attr('class', '');
             }, 2000);
             console.log("animate ran");
         }
