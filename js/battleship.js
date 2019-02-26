@@ -1,4 +1,4 @@
-//more styling, instructions
+//more styling
 $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
@@ -45,7 +45,7 @@ $(document).ready(function(){
         }
 
         function animate(){
-            $("#stats-navbar").css('background-color', 'rgb(241, 206, 63)');
+            $("#stats-navbar").css('background-color', '#f78e1e');
             setTimeout(function(){ 
                 $('#stats-navbar').css('background-color', '#333');
             }, 2000);
@@ -254,7 +254,7 @@ $(document).ready(function(){
         for (var pos=0; pos<temp.game.board.length; pos++) {
             if (temp.game.board[pos].show===true && temp.game.board[pos].val===0) {
                stats.misses++
-               if (stats.misses>=10) {
+               if (stats.misses>=8) {
                     displayModal("You lose!", true);
                 }
             }

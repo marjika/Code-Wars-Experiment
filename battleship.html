@@ -34,8 +34,9 @@
                         <br />spaces. Choose a square of the grid by picking
                         <br />a letter and number and pressing the button.
                         <br />A color-filled square indicates a boat and
-                        <br />'MISS' means no ship is hidden there. You can 
-                        <br />miss 10 times before you lose. Each hit is 
+                        <br />'MISS' means no ship is hidden there. Find all
+                        <br />three ships to win the game. You can 
+                        <br />miss 8 times before you lose. Each hit is 
                         <br />worth one point and a miss loses 1/2 point.
                         <br />A sunk ship is 5 points. Good luck!</p>
                     </div>
@@ -108,8 +109,11 @@
         </div>
 
         <div class="row" style="padding-top: 20px">
-            <div class="col-10"></div>
-            <div class="col-2">
+            <div class="col-9"></div>
+            <div class="col-3">
+                <div class="replayLink" style="float: right">
+                    <a href="battleship.html">Replay Battleship</a>
+                </div>
                 <div class="carDrawLink" style="float: right">
                     <a href="index.html">ASCII cars</a>
                 </div>
@@ -125,7 +129,7 @@
             <div id="modal-caption"></div>
             <button id="restart-button">Play Again</button>
             <h5 id="final-score">Your score: </h5>
-            <span class="close">Close</span>
+            <button class="close">Close</button>
         </div>
 
     </div>

@@ -35,7 +35,7 @@ html {
 
 
   /* #stats-navbar .enabled {
-    background-color: rgb(241, 206, 63);
+    background-color: #f3a32a;
 }  */
   
   li {
@@ -96,7 +96,7 @@ html {
   }
   
   /* The Close Button */
-  .close {
+  /* .close {
     font-size: 28px;
     font-weight: bold;
     background-color: aquamarine;
@@ -105,17 +105,11 @@ html {
     max-width: 30%;
     margin-left: 35%;
     border: 1px solid #888;
-  }
+  } */
   
-  .close:hover,
-  .close:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    background-color: rgb(83, 181, 211);
-  }
-
-  #restart-button {
+  #restart-button, .close {
+    font-size: inherit;
+    color: black;
     max-width: 40%;;
     padding: 10px 24px;
     border-radius: 12px;
@@ -132,13 +126,22 @@ html {
     cursor: pointer;
   }
 
+  .close:hover,
+  .close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgb(83, 181, 211);
+  }
+
   #modal-caption {
       font-size: 28px;
   }
 
-  .carDrawLink {
+  .carDrawLink, .replayLink {
       background-color: aquamarine;
       padding: 5px;
+      margin-left: 10px;
   }
 
   a:hover {
@@ -223,7 +226,7 @@ html {
     background-color: #ccc;
 }
 .trigger_popup_fricc {
-    cursor: pointer;
+    cursor: help;
     font-size: 20px;
     margin: 20px;
     display: inline-block;
@@ -232,3 +235,7 @@ html {
     border-radius: 25px;
     padding: 10px 24px;
 }
+
+/* .trigger_popup_fricc:hover {
+    color: aquamarine;
+} */
