@@ -21,7 +21,7 @@ html {
     align-content: center;
 }
 
-ul {
+#stats-navbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -33,17 +33,10 @@ ul {
     border-radius: 0px 0px 12px 12px;
   }
 
-  /* #stats-navbar {
-    animation-name: sunk-ship;
-    animation-duration: 2s;
-    -webkit-animation-name: sunk-ship;
-    -webkit-animation-duration: 2s;
-  } */
 
-  ul.enabled {
-    background: #EDFAFD;
-    color: black;
-}
+  /* #stats-navbar .enabled {
+    background-color: rgb(241, 206, 63);
+}  */
   
   li {
     float: right;

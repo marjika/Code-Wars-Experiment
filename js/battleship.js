@@ -1,4 +1,4 @@
-//more styling, more boards, instructioons
+//more styling, instructions, message if only one coordinate is entered
 $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
@@ -9,6 +9,11 @@ $(document).ready(function(){
                      [ [3, 0, 0, 2, 2, 2], [3, 0, 0, 1, 0, 0], [3, 0, 0, 0, 1, 0], [3, 0, 0, 0, 0, 1] ],
                      [ [0, 1, 2, 0, 0, 0], [0, 1, 0, 2, 0, 0], [0, 1, 0, 0, 2, 0], [0, 0, 3, 3, 0, 2] ],
                      [ [0, 0, 0, 3, 0, 0], [0, 0, 3, 1, 1, 1], [0, 3, 0, 0, 2, 0], [3, 0, 0, 0, 2, 0] ],
+                     [ [0, 0, 0, 0, 0, 0], [0, 0, 2, 1, 1, 1], [0, 0, 0, 2, 0, 0], [0, 0, 3, 3, 2, 0] ],
+                     [ [0, 0, 0, 0, 1, 0], [0, 3, 3, 3, 3, 1], [0, 0, 0, 0, 0, 0], [0, 0, 2, 2, 2, 0] ],
+                     [ [0, 0, 0, 0, 3, 0], [0, 0, 0, 3, 1, 0], [0, 0, 3, 2, 1, 0], [0, 3, 0, 2, 1, 0] ],
+                     [ [0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 1, 3, 3, 3, 3], [2, 2, 1, 0, 0, 0] ],
+                     [ [0, 3, 0, 0, 1, 0], [0, 3, 2, 0, 1, 0], [0, 0, 0, 2, 1, 0], [0, 0, 0, 0, 2, 0] ],
                      [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
 
      
@@ -40,9 +45,9 @@ $(document).ready(function(){
         }
 
         function animate(){
-            $('ul').attr('class', 'enabled');
+            $("#stats-navbar").css('background-color', 'rgb(241, 206, 63)');
             setTimeout(function(){ 
-                $('ul').attr('class', '');
+                $('#stats-navbar').css('background-color', '#333');
             }, 2000);
             console.log("animate ran");
         }
