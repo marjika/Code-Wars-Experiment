@@ -1,4 +1,4 @@
-//more styling, instructions, message if only one coordinate is entered
+//more styling, instructions
 $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
@@ -63,7 +63,7 @@ $(document).ready(function(){
                             animate();
                             $("#ships-sunk").html("<p>Sunk: " + stats.sunk + "</p>");
                             if (stats.sunk>=3) {
-                                displayModal("You win!");
+                                displayModal("You win!", true);
                             }
                         }
                     }
@@ -207,37 +207,42 @@ $(document).ready(function(){
 
     //when user enters a coordinate, error handling
     $('#hit-input').click(function(){
-        var letterInput = ($("#X-input").val().trim()).toUpperCase();
-        var xCoord=0;
-        if (letterInput==="A") {
-            xCoord = 0;
-        }
-        else if (letterInput==="B") {
-            xCoord = 1;
-        }
-        else if (letterInput==="C") {
-            xCoord = 2;
-        }
-        else if (letterInput==="D") {
-            xCoord = 3;
-        }
-        else if (letterInput==="E") {
-            xCoord = 4;
-        }
-        else if (letterInput==="F") {
-            xCoord = 5;
+        if ($("#X-input").val()!==null && $("#Y-input").val()!==null) {
+            var letterInput = ($("#X-input").val().trim()).toUpperCase();
+            var xCoord=0;
+            if (letterInput==="A") {
+                xCoord = 0;
+            }
+            else if (letterInput==="B") {
+                xCoord = 1;
+            }
+            else if (letterInput==="C") {
+                xCoord = 2;
+            }
+            else if (letterInput==="D") {
+                xCoord = 3;
+            }
+            else if (letterInput==="E") {
+                xCoord = 4;
+            }
+            else if (letterInput==="F") {
+                xCoord = 5;
+            }
+            else {
+                displayModal("Please enter coodinates of a letter (A,B,C,D,E,F) and number (1,2,3,4)", false);            
+            }
+            var yCoord = (parseInt($("#Y-input").val().trim())-1);
+            if (yCoord>3 || yCoord<0) {
+                displayModal("Please enter coodinates of a letter (A,B,C,D,E,F) and number (1,2,3,4)", false);
+            }
+            temp.checkHit([xCoord, yCoord]);
+            checkSunk([xCoord, yCoord]);
+            temp.game.clearCanvas();
+            temp.game.redrawBoard();
         }
         else {
-            displayModal("Please enter coodinates of a letter (A,B,C,D,E,F) and number (1,2,3,4)");            
+            displayModal("Please enter a value for both coordinates.", false);
         }
-        var yCoord = (parseInt($("#Y-input").val().trim())-1);
-        if (yCoord>3 || yCoord<0) {
-            displayModal("Please enter coodinates of a letter (A,B,C,D,E,F) and number (1,2,3,4)");
-        }
-        temp.checkHit([xCoord, yCoord]);
-        checkSunk([xCoord, yCoord]);
-        temp.game.clearCanvas();
-        temp.game.redrawBoard();
         $("#X-input").val('Choose a letter');
         $("#Y-input").val('Choose a number');
     });
@@ -249,8 +254,8 @@ $(document).ready(function(){
         for (var pos=0; pos<temp.game.board.length; pos++) {
             if (temp.game.board[pos].show===true && temp.game.board[pos].val===0) {
                stats.misses++
-               if (stats.misses>=8) {
-                    displayModal("You lose!");
+               if (stats.misses>=10) {
+                    displayModal("You lose!", true);
                 }
             }
             else if (temp.game.board[pos].show===true && temp.game.board[pos].val>0) {
@@ -276,12 +281,20 @@ $(document).ready(function(){
         }
     }
 
-    function displayModal(text) {
-        stats.score = calculateScore();
-        // var modal = $("#myModal");
-        $("#modal-caption").html("<p>" + text + "</p>");
-        $("#final-score").html("<p>Your score: " + stats.score + "</p>");
-        $("#myModal").show();
+    function displayModal(text, gameOver) {
+        if (!gameOver) {
+            $("#modal-caption").html("<p>" + text + "</p>");
+            $("#final-score").html("");
+            $("#restart-button").hide();
+            $("#myModal").show();
+        }
+        else {
+            stats.score = calculateScore();
+            $("#modal-caption").html("<p>" + text + "</p>");
+            $("#final-score").html("<p>Your score: " + stats.score + "</p>");
+            $("#restart-button").show();
+            $("#myModal").show();
+        }
     }
 
     $('#restart-button').click(function(){
