@@ -1,4 +1,3 @@
-//more styling
 $(document).ready(function(){
     //Battle Ships
      var stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
@@ -6,15 +5,15 @@ $(document).ready(function(){
      var temp;
             
      var boardList = [ [ [0, 0, 0, 2, 0, 0], [3, 0, 1, 0, 2, 0], [0, 3, 1, 0, 0, 2], [0, 0, 1, 0, 0, 0] ],
-                     [ [3, 0, 0, 2, 2, 2], [3, 0, 0, 1, 0, 0], [3, 0, 0, 0, 1, 0], [3, 0, 0, 0, 0, 1] ],
-                     [ [0, 1, 2, 0, 0, 0], [0, 1, 0, 2, 0, 0], [0, 1, 0, 0, 2, 0], [0, 0, 3, 3, 0, 2] ],
-                     [ [0, 0, 0, 3, 0, 0], [0, 0, 3, 1, 1, 1], [0, 3, 0, 0, 2, 0], [3, 0, 0, 0, 2, 0] ],
-                     [ [0, 0, 0, 0, 0, 0], [0, 0, 2, 1, 1, 1], [0, 0, 0, 2, 0, 0], [0, 0, 3, 3, 2, 0] ],
-                     [ [0, 0, 0, 0, 1, 0], [0, 3, 3, 3, 3, 1], [0, 0, 0, 0, 0, 0], [0, 0, 2, 2, 2, 0] ],
-                     [ [0, 0, 0, 0, 3, 0], [0, 0, 0, 3, 1, 0], [0, 0, 3, 2, 1, 0], [0, 3, 0, 2, 1, 0] ],
-                     [ [0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 1, 3, 3, 3, 3], [2, 2, 1, 0, 0, 0] ],
-                     [ [0, 3, 0, 0, 1, 0], [0, 3, 2, 0, 1, 0], [0, 0, 0, 2, 1, 0], [0, 0, 0, 0, 2, 0] ],
-                     [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
+                       [ [3, 0, 0, 2, 2, 2], [3, 0, 0, 1, 0, 0], [3, 0, 0, 0, 1, 0], [3, 0, 0, 0, 0, 1] ],
+                       [ [0, 1, 2, 0, 0, 0], [0, 1, 0, 2, 0, 0], [0, 1, 0, 0, 2, 0], [0, 0, 3, 3, 0, 2] ],
+                       [ [0, 0, 0, 3, 0, 0], [0, 0, 3, 1, 1, 1], [0, 3, 0, 0, 2, 0], [3, 0, 0, 0, 2, 0] ],
+                       [ [0, 0, 0, 0, 0, 0], [0, 0, 2, 1, 1, 1], [0, 0, 0, 2, 0, 0], [0, 0, 3, 3, 2, 0] ],
+                       [ [0, 0, 0, 0, 1, 0], [0, 3, 3, 3, 3, 1], [0, 0, 0, 0, 0, 0], [0, 0, 2, 2, 2, 0] ],
+                       [ [0, 0, 0, 0, 3, 0], [0, 0, 0, 3, 1, 0], [0, 0, 3, 2, 1, 0], [0, 3, 0, 2, 1, 0] ],
+                       [ [0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 1, 3, 3, 3, 3], [2, 2, 1, 0, 0, 0] ],
+                       [ [0, 3, 0, 0, 1, 0], [0, 3, 2, 0, 1, 0], [0, 0, 0, 2, 1, 0], [0, 0, 0, 0, 2, 0] ],
+                       [ [3, 0, 0, 0, 1, 0], [0, 3, 0, 0, 1, 0], [0, 0, 3, 0, 1, 0], [2, 2, 2, 0, 1, 0] ], ];
 
      
      var boards = [...boardList];
@@ -44,6 +43,7 @@ $(document).ready(function(){
             }
         }
 
+        //changes color of stats navbar when user sinks a ship
         function animate(){
             $("#stats-navbar").css('background-color', '#f78e1e');
             setTimeout(function(){ 
@@ -266,11 +266,11 @@ $(document).ready(function(){
         $("#misses").html("<p>Misses: " + stats.misses + "</p>");
     }
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    // Get the element that closes the modal
+    var closeButton = document.getElementById("close");
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+    // When the user clicks on closeButton, close the modal
+    closeButton.onclick = function() {
         $("#myModal").hide();
     }
 
@@ -281,6 +281,7 @@ $(document).ready(function(){
         }
     }
 
+    //displays modal for input error-handling, game win or loss
     function displayModal(text, gameOver) {
         if (!gameOver) {
             $("#modal-caption").html("<p>" + text + "</p>");
@@ -297,6 +298,7 @@ $(document).ready(function(){
         }
     }
 
+    //starts a new game
     $('#restart-button').click(function(){
         $("#myModal").hide();
         stats = { hits : 0, misses: 0, sunk: 0, score: 0 };
@@ -309,6 +311,7 @@ $(document).ready(function(){
         startGame();
     });
 
+    //modal handling for directions button
     $(".trigger_popup_fricc").click(function(){
         $('.hover_bkgr_fricc').show();
      });

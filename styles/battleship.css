@@ -107,7 +107,7 @@ html {
     border: 1px solid #888;
   } */
   
-  #restart-button, .close {
+  #restart-button, #close {
     font-size: inherit;
     color: black;
     max-width: 40%;;
@@ -126,8 +126,7 @@ html {
     cursor: pointer;
   }
 
-  .close:hover,
-  .close:focus {
+  #close:hover, #close:focus {
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -172,6 +171,11 @@ html {
       margin-bottom: 20px;
       width:90%;
       padding-bottom: 20px;
+  }
+
+  #final-score {
+      margin-top: 1.0rem;
+      margin-bottom: 1.0rem;
   }
 
   /* Popup box BEGIN */
