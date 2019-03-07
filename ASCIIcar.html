@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code Wars Draw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/ship.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/car.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/car.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12"
+                <h1 style="font-size: 40px; font-weight: bold">Build a Car</h1>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div class="input-container"> -->
+                <div class="col-6">
+                    <div class="input-title">Enter the length of the car</div> 
+                    <input 
+                        type="text" 
+                        class="input" 
+                        id="length-input"
+                        title="calculator"
+                        placeholder="7 or More">
+                </div>
+                <div class="col-6">
+                    <div class="input-title">Enter the number of doors for your car</div> 
+                    <input 
+                        type="text" 
+                        class="input" 
+                        id="doors-input"
+                        title="calculator"
+                        placeholder="At least 1">
+                </div>
+            <!-- </div> -->
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button id="car-input">Draw</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="result-container">
+                <div class="title">Result</div> 
+                <span id="result"></span>
+            </div>
+        </div>
+        <div class="row" style="text-align: center;">
+            <div class="battleshipLink">
+                <a href="battleship.html">Play Battleship</a>
+            </div>
+            <div class="battleshipLink">
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
