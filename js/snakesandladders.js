@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-function diceRoll() {
-    var diceOne = Math.floor(Math.random() * 6) + 1;
-    var diceTwo = Math.floor(Math.random() * 6) + 1;
-}
-
 function SnakesLadders() {
     this.board = [[2,38],[7,14],[8,31],[15,26],[21,42],[28,84],[36,44],[51,67],[71,91],[78,98],[87,94],[16,6],[46,25],[49,11],[62,19],[64,60],[74,53],[89,68],[92,88],[95,75],[99,80]];
 
@@ -46,47 +41,82 @@ function SnakesLadders() {
         if (this.player1Turn) {
             this.nowRolling = player1;
             dialogue = "Player 1 ";
+            //$(".player-id").html("<span>1</span>");
         }
         else {
             this.nowRolling = player2;
             dialogue = "Player 2 ";
+            //$(".player-id").html("<span>2<span>");
         }
         this.nowRolling.move(die1 + die2);
 
         if (die1!==die2 || this.nowRolling.position===100) {
             this.player1Turn = !this.player1Turn;
+            // if (!this.player1Turn) {
+            //     $(".player-id").html("<span>2<span>");
+            // }
+            // else {
+            //     $(".player-id").html("<span>1</span>");
+            // }
         }  
         if (gameover===true) {
-            return "Game over!";
+            $("#roll-message").html("<p>Game over!</p>");
         } 
         else if (player1.position!==100 && player2.position!==100) {
-            $("#roll-result").html(dialogue + "is on square " + this.nowRolling.position);
-            return (dialogue + "is on square " + this.nowRolling.position);
+            $("#roll-message").html("<p>" + dialogue + "is on square " + this.nowRolling.position + "</p>");
+            drawPlayer(this.nowRolling.position, dialogue);
+            //return (dialogue + "is on square " + this.nowRolling.position);
         }    
         else if (this.nowRolling.position===100) {
             gameover=true;
-            return (dialogue + "Wins!");
+            $("#roll-message").html("<p>" + dialogue + "Wins!</p>");
         } 
       
     }
 };
-function drawPlayer(posx, posy, val) {
+function drawPlayer(num, val) {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, 564, 564);
     var ctx = canvas.getContext('2d');
-    if (val===1) {
+    var x; var y;
+    if (val==="Player 1 ") {
         ctx.fillStyle = 'red';
     }
-    else if (val===2) {
+    else if (val==="Player 2 ") {
         ctx.fillStyle = 'blue';
     }
-
-    ctx.fillRect(posx,posy,10,10);
+    if (num<11) {
+        y=535.8;
+        x=28.2 + (56.4*(num-1));
+    }
+    else if (num>10&&num<21) {
+        y=479.4;
+        x=535.8-(56.4*(num-11));
+    }
+    else if (num>20 && num<31) {
+        y=423;
+        x=28.2 + (56.4*(num-21));
+    }
+    else if (num>30&&num<41) {
+        y=366.6;
+        x=535.8-(56.4*(num-31));
+    }
+    else if (num>40 && num<51) {
+        y=310.2;
+        x=28.2 + (56.4*(num-41));
+    }
+    else if (num>50&&num<61) {
+        y=253.8;
+        x=535.8-(56.4*(num-51));
+    }
+    ctx.beginPath();
+    ctx.arc(x, y, 15, 0, 2 * Math.PI);
+    ctx.fill();
 }
 
 let game = new SnakesLadders();
-drawPlayer(25, 535, 1);
+drawPlayer(1, "Player 1 ");
 // console.log(game.play(1, 1));
 // console.log(game.play(1, 5));
 // console.log(game.play(6, 2));
@@ -95,9 +125,9 @@ drawPlayer(25, 535, 1);
 $("#roll").click(function() {
     var diceOne = Math.floor(Math.random() * 6) + 1;
     var diceTwo = Math.floor(Math.random() * 6) + 1;
-    $("#roll-result").html("You rolled "+ diceOne + " and " + diceTwo + ".");
+    $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
     game.play(diceOne, diceTwo);
-    drawPlayer(50, 535, 1);
+    
 });
 
 });
