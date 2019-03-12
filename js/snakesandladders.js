@@ -152,10 +152,15 @@ $(document).ready(function(){
     drawPlayers(0, 0);
 
     $("#roll").click(function() {
-        var diceOne = Math.floor(Math.random() * 6) + 1;
-        var diceTwo = Math.floor(Math.random() * 6) + 1;
-        $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
-        game.play(diceOne, diceTwo);
+        $("#roll-result").html("<p></p>");
+
+        function rollResult() {
+            var diceOne = Math.floor(Math.random() * 6) + 1;
+            var diceTwo = Math.floor(Math.random() * 6) + 1;
+            $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
+            game.play(diceOne, diceTwo);
+        }
+        setTimeout(function(){ rollResult(); }, 800);
         
     });
 
