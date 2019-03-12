@@ -25,6 +25,12 @@ $(document).ready(function(){
                 for (var i= 0; i<board.length; i++) {
                     if (this.position===board[i][0]) {
                         this.position=board[i][1];
+                        if (i<=10) {
+                            $("#roll-jump").html("<p>Congratulations! You found a ladder.</p>");
+                        }
+                        else if (i>10) {
+                            $("#roll-jump").html("<p>Oops! You landed on a snake.</p>");
+                        }
                     }
                 }
             }
@@ -153,10 +159,12 @@ $(document).ready(function(){
 
     $("#roll").click(function() {
         $("#roll-result").html("<p></p>");
+        $("#roll-jump").html("<p></p>");
 
         function rollResult() {
             var diceOne = Math.floor(Math.random() * 6) + 1;
             var diceTwo = Math.floor(Math.random() * 6) + 1;
+            $("#roll-result").css("font-size: .8em");
             $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
             game.play(diceOne, diceTwo);
         }

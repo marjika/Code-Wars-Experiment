@@ -1,0 +1,27 @@
+* {
+    text-align: center;
+    font-family: 'Chewy', cursive;
+    font-size: 30px;
+}
+
+html {
+    height:100vh;
+}
+
+.body {
+    
+    background-image: url("../images/backgroundSnakesFiltered.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: auto;
+    text-align: center;
+}
+
+#roll-title, #roll-message, #roll-jump {
+    font-size: .8em;
+}
+
+#roll-result {
+    font-size: .8em;
+}

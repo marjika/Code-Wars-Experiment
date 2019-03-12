@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Code Wars Draw</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/ship.png">
+    <link rel="shortcut icon" href="images/snake.png">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
     <script src="js/snakesandladders.js"></script>
     <script type="text/javascript" src="js/giffer.min.js"></script>
 
@@ -27,14 +27,14 @@
                         'top': '50%',
                         'left': '50%',
                         'margin': '-30px 0 0 -30px',
-                        'display': 'hidden'
+                       
                     },
                     playButtonIconStyles: {
                         'width': '0',
                         'height': '0',
                         'border-top': '14px solid transparent',
                         'border-bottom': '14px solid transparent',
-                        'border-left': '14px solid rgba(0, 0, 0, 0.5)',
+                        'border-left': '14px solid transparent',
                         'position': 'absolute',
                         'left': '26px',
                         'top': '16px'                        
@@ -51,7 +51,7 @@
 
         <div class="row">
             <div class="col-4" style="margin-top: 3%;">
-                <div style="margin-top: 3%;">Player <span class="player-id"></span></div>
+                <div style="margin-top: 2%;">Player <span class="player-id"></span></div>
                 <div id="roll-title">Click the dice to move your player.</div>
                 <button id="roll">
                     <img data-gifffer="images/rolling-dice.gif" 
@@ -59,15 +59,16 @@
                          data-gifffer-width="100" 
                          data-gifffer-height="100" 
                          data-gifffer-duration="700" /></button>
-                <div id="roll-result" style="margin-top: 3%;"></div>
-                <div id="roll-message" style="margin-top: 3%;"></div>
+                <div id="roll-result" style="margin-top: 2%;"></div>
+                <div id="roll-message" style="margin-top: 2%;"></div>
+                <div id="roll-jump" style="margin-top: 2%;"></div>
                 
             </div>
 
             <div class="col-8">
 
                 <div class="canvas-container">
-                    <div class="title">Snakes and Ladders</div> 
+                    <div class="title" style="margin-top: 2%; margin-bottom: 2%;">Snakes and Ladders</div> 
                     <canvas id="myCanvas" width="564" height="564"
                         style="background: url('images/snakesandladdersboard.jpg');">
                         Your browser does not support the canvas element.
