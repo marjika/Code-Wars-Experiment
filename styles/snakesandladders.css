@@ -1,7 +1,7 @@
 * {
     text-align: center;
     font-family: 'Chewy', cursive;
-    font-size: 30px;
+    font-size: 22px;
 }
 
 html {
@@ -18,10 +18,51 @@ html {
     text-align: center;
 }
 
-#roll-title, #roll-message, #roll-jump {
+.game-info {
+    height: auto;
+    min-height: 60%;
+}
+
+/* #roll-title, #roll-message, #roll-jump {
     font-size: .8em;
 }
 
 #roll-result {
     font-size: .8em;
+} */
+
+.title {
+    font-size: 1.8em;
+}
+
+#player-num {
+    font-size: 1.4em;
+}
+
+#roll {
+    min-height: 120px;
+    min-width: 120px;
+    padding: 0;
+    border: none;
+    background-color: #bce4fd;
+}
+
+img {
+    padding: 0;
+    border: none;
+}
+
+.homeLink {
+    background-color: #bce4fd;
+    padding: 5px;
+}
+
+a:hover {
+    color: gray;
+    text-decoration: none; 
+  }
+
+a {
+    text-decoration: none; 
+    color: black; 
 }

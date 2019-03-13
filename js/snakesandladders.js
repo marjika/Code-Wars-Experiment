@@ -1,3 +1,5 @@
+//Animate movement, indicate player turn, updated game board, styling, replay button
+
 $(document).ready(function(){
 
     function SnakesLadders() {
@@ -94,10 +96,10 @@ $(document).ready(function(){
     function drawPiece(ctx, num, val) {
         var x; var y;
         if (val===1) {
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = '#0d1800';
         }
         else if (val===2) {
-            ctx.fillStyle = 'blue';
+            ctx.fillStyle = '#cd3ed7';
         }
         if (num<1) {
             y=535.8;
@@ -158,8 +160,8 @@ $(document).ready(function(){
     drawPlayers(0, 0);
 
     $("#roll").click(function() {
-        $("#roll-result").html("<p></p>");
-        $("#roll-jump").html("<p></p>");
+        $("#roll-result").html("<p>&nbsp;</p>");
+        $("#roll-jump").html("<p>&nbsp;</p>");
 
         function rollResult() {
             var diceOne = Math.floor(Math.random() * 6) + 1;
