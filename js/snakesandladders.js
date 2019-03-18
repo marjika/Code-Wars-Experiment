@@ -1,26 +1,87 @@
-//Animate movement, indicate player turn, updated game board, styling, replay button
+//Animate movement, indicate player turn, updated game board, styling, replay button, one or two players, dice don't roll on gameover
 
 $(document).ready(function(){
 
     function SnakesLadders() {
-        this.board = [[2,38],[7,14],[8,31],[15,26],[21,42],[28,84],[36,44],[51,67],[71,91],[78,98],[87,94],[16,6],[46,25],[49,11],[62,19],[64,60],[74,53],[89,68],[92,88],[95,75],[99,80]];
+        board = [[2,38],[7,14],[8,31],[15,26],[21,42],[28,84],[36,44],[51,67],[71,91],[78,98],[87,94],[16,6],[46,25],[49,11],[62,19],[64,60],[74,53],[89,68],[92,88],[95,75],[99,80]];
 
         function Player(board) {
             this.position = 0;
-            this.board=board;
+            this.drawPlayer = function(ctx, val) {
+                var x; var y;
+                if (val===1) {
+                    ctx.fillStyle = '#0d1800';
+                }
+                else if (val===2) {
+                    ctx.fillStyle = '#cd3ed7';
+                }
+                if (this.position<1) {
+                    y=535.8;
+                    x=0;
+                }
+                else if (this.position>0 && this.position<11) {
+                    y=535.8;
+                    x=28.2 + (56.4*(this.position-1));
+                }
+                else if (this.position>10&&this.position<21) {
+                    y=479.4;
+                    x=535.8-(56.4*(this.position-11));
+                }
+                else if (this.position>20 && this.position<31) {
+                    y=423;
+                    x=28.2 + (56.4*(this.position-21));
+                }
+                else if (this.position>30 && this.position<41) {
+                    y=366.6;
+                    x=535.8-(56.4*(this.position-31));
+                }
+                else if (this.position>40 && this.position<51) {
+                    y=310.2;
+                    x=28.2 + (56.4*(this.position-41));
+                }
+                else if (this.position>50 && this.position<61) {
+                    y=253.8;
+                    x=535.8-(56.4*(this.position-51));
+                }
+                else if (this.position>60 && this.position<71) {
+                    y=197.4;
+                    x=28.2 + (56.4*(this.position-61));
+                }
+                else if (this.position>70 && this.position<81) {
+                    y=141;
+                    x=535.8-(56.4*(this.position-71));
+                }
+                else if (this.position>80 && this.position<91) {
+                    y=84.6;
+                    x=28.2 + (56.4*(this.position-81));
+                }
+                else if (this.position>90 && this.position<101) {
+                    y=28.2;
+                    x=535.8-(56.4*(this.position-91));
+                }
+                if (val===1) {
+                    y=y-5;
+                }
+                if (val===2) {
+                    y=y+5;
+                }
+                ctx.beginPath();
+                ctx.arc(x, y, 15, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+
             this.move =function(roll) {
                 if (this.position+roll<100) {
-                    this.position = this.position+roll;
-                    this.checkBoard(this.board);  
+                    this.position = this.position+roll; 
                 }
-                else if (this.position+roll>100) {
-                    var backSpace = this.position+roll-100;
-                    this.position = 100-backSpace;
-                    this.checkBoard(this.board);
+                // else if (this.position+roll>100) {
+                //     var backSpace = this.position+roll-100;
+                //     this.position = 100-backSpace;
+                // }
+                else if (this.position+roll>=100) {
+                    this.position = 100;
                 }
-                else if (this.position+roll===100) {
-                    this.position = this.position+roll;
-                }
+
             }
             this.checkBoard = function(board) {
                 
@@ -37,127 +98,92 @@ $(document).ready(function(){
                 }
             }
         }
-    
-        let player1 = new Player(this.board);
-        let player2 = new Player(this.board);
-        this.player1Turn = true;
-        var gameover = false;
-                    
-        this.play= function(die1, die2) {
-            
-            var dialogue = "";
-            if (this.player1Turn) {
-                this.nowRolling = player1;
-                dialogue = "Player 1 ";
-                //$(".player-id").html("<span>1</span>");
-            }
-            else {
-                this.nowRolling = player2;
-                dialogue = "Player 2 ";
-                //$(".player-id").html("<span>2<span>");
-            }
-            this.nowRolling.move(die1 + die2);
 
-            if (die1!==die2 || this.nowRolling.position===100) {
-                this.player1Turn = !this.player1Turn;
-                // if (!this.player1Turn) {
-                //     $(".player-id").html("<span>2<span>");
-                // }
-                // else {
-                //     $(".player-id").html("<span>1</span>");
-                // }
-            }  
-            if (gameover===true) {
-                $("#roll-message").html("<p>Game over!</p>");
-            } 
-            else if (player1.position!==100 && player2.position!==100) {
-                $("#roll-message").html("<p>" + dialogue + "is on square " + this.nowRolling.position + "</p>");
+        function playGame() {
+            console.log(board);
+            this.player1 = new Player(board);
+            this.player2 = new Player(board);
+            this.player1Turn = true;
+            this.gameover = false;
+            this.play= function(die1, die2) {
+            
+                var dialogue = "";
+                if (this.player1Turn) {
+                    this.nowRolling = this.player1;
+                    dialogue = "Player 1 ";
+                    //$(".player-id").html("<span>1</span>");
+                }
+                else {
+                    this.nowRolling = this.player2;
+                    dialogue = "Player 2 ";
+                    //$(".player-id").html("<span>2<span>");
+                }
+
+                function movingPiece(obj) {
+                    console.log();
+                    var moving=0;
+                    var myVar = setInterval(frame, 400);
+                    
+                    function frame() {
+                        console.log(moving, die1+die2);
+                        if (moving>=(die1 + die2)) {
+                            clearInterval(myVar);
+                            obj.nowRolling.checkBoard(board);
+                            obj.drawBoard();
+                            playerInfo(obj);
+                        }
+                        else {
+                            obj.nowRolling.move(1);
+                            obj.drawBoard();
+                            moving++;
+                            
+                        }
+                    }
+                }
+
+                movingPiece(this);
                 
-                //return (dialogue + "is on square " + this.nowRolling.position);
-            }    
-            else if (this.nowRolling.position===100) {
-                gameover=true;
-                $("#roll-message").html("<p>" + dialogue + "Wins!</p>");
-            } 
-            drawPlayers(player1.position, player2.position);
+                function playerInfo(obj) {
+                    if (die1!==die2 || obj.nowRolling.position===100) {
+                        obj.player1Turn = !obj.player1Turn;
+                        // if (!this.player1Turn) {
+                        //     $(".player-id").html("<span>2<span>");
+                        // }
+                        // else {
+                        //     $(".player-id").html("<span>1</span>");
+                        // }
+                    }  
+                    if (obj.gameover===true) {
+                        $("#roll-message").html("<p>Game over!</p>");
+                    } 
+                    else if (obj.player1.position!==100 && obj.player2.position!==100) {
+                        $("#roll-message").html("<p>" + dialogue + "is on square " + obj.nowRolling.position + "</p>");
+                    
+                    }    
+                    else if (obj.nowRolling.position===100) {
+                        obj.gameover=true;
+                        $("#roll-message").html("<p>" + dialogue + "Wins!</p>");
+                    } 
+                }
+            }
+            this.drawBoard = function() {
+                console.log("this.drawBoard function");
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, 564, 564);
+                this.player1.drawPlayer(ctx, 1);
+                this.player2.drawPlayer(ctx, 2);
+            }
         }
+
+        this.myGame = new playGame();
+        
+                    
+
     };
 
-    function drawPlayers(pos1, pos2) {
-        console.log(pos1, pos2);
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, 564, 564);
-        var ctx = canvas.getContext('2d');
-        drawPiece(ctx, pos1, 1);
-        drawPiece(ctx, pos2, 2);
-    }
-
-    function drawPiece(ctx, num, val) {
-        var x; var y;
-        if (val===1) {
-            ctx.fillStyle = '#0d1800';
-        }
-        else if (val===2) {
-            ctx.fillStyle = '#cd3ed7';
-        }
-        if (num<1) {
-            y=535.8;
-            x=0;
-        }
-        else if (num>0 && num<11) {
-            y=535.8;
-            x=28.2 + (56.4*(num-1));
-        }
-        else if (num>10&&num<21) {
-            y=479.4;
-            x=535.8-(56.4*(num-11));
-        }
-        else if (num>20 && num<31) {
-            y=423;
-            x=28.2 + (56.4*(num-21));
-        }
-        else if (num>30&&num<41) {
-            y=366.6;
-            x=535.8-(56.4*(num-31));
-        }
-        else if (num>40 && num<51) {
-            y=310.2;
-            x=28.2 + (56.4*(num-41));
-        }
-        else if (num>50&&num<61) {
-            y=253.8;
-            x=535.8-(56.4*(num-51));
-        }
-        else if (num>60 && num<71) {
-            y=197.4;
-            x=28.2 + (56.4*(num-61));
-        }
-        else if (num>70&&num<81) {
-            y=141;
-            x=535.8-(56.4*(num-71));
-        }
-        else if (num>80 && num<91) {
-            y=84.6;
-            x=28.2 + (56.4*(num-81));
-        }
-        else if (num>90&&num<101) {
-            y=28.2;
-            x=535.8-(56.4*(num-91));
-        }
-        if (val===1) {
-            y=y-5;
-        }
-        if (val===2) {
-            y=y+5;
-        }
-        ctx.beginPath();
-        ctx.arc(x, y, 15, 0, 2 * Math.PI);
-        ctx.fill();
-    }
-
     let game = new SnakesLadders();
-    drawPlayers(0, 0);
+    game.myGame.drawBoard();
 
     $("#roll").click(function() {
         $("#roll-result").html("<p>&nbsp;</p>");
@@ -166,9 +192,9 @@ $(document).ready(function(){
         function rollResult() {
             var diceOne = Math.floor(Math.random() * 6) + 1;
             var diceTwo = Math.floor(Math.random() * 6) + 1;
-            $("#roll-result").css("font-size: .8em");
+            
             $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
-            game.play(diceOne, diceTwo);
+            game.myGame.play(diceOne, diceTwo);
         }
         setTimeout(function(){ rollResult(); }, 800);
         
