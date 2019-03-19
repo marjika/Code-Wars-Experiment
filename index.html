@@ -4,36 +4,40 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Code Wars Draw</title>
+    <title>Code Wars Activities</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/ship.png">
-
+    <link rel="shortcut icon" href="images/mouse.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/car.js"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/car.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/index.css">
 
 </head>
 
-<body>
+<div class="body">
     <div class="container">
         <div class="row" style="padding-top: 20px">
-            <div class="col-9"></div>
+            <div class="col-5">
+                <div id="title">
+                    <h2>Code Wars Activities</h2>
+                </div>
+            </div>
+            <div class="col-4"></div>
             <div class="col-3">
-                <div class="replayLink" style="float: right">
-                    <a href="battleship.html">Battleship</a>
-                </div>
-                <div class="carDrawLink" style="float: right">
-                    <a href="ASCIIcar.html">ASCII cars</a>
-                </div>
-                <div class="snakesLadders" style="float: right">
-                    <a href="SnakesAndLadders.html">Snakes and Ladders</a>
-                </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Games and activites to try
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="battleship.html">Battleship</a>               
+                            <a class="dropdown-item" href="ASCIIcar.html">ASCII cars</a>           
+                            <a class="dropdown-item" href="SnakesAndLadders.html">Snakes and Ladders</a>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
-
-</body>
+</div>
 
 </html>
