@@ -37,9 +37,26 @@ html {
     font-size: 1.4em;
 }
 
+.btn:hover {
+    color: lightgray;
+}
+
 .dropdown-menu {
-  
     background-color: rgba(0,0,0,0.15);
+}
+
+a.dropdown-item {
+    color: white;
+    background-color: rgba(0,0,0,0.15);
+}
+
+a.dropdown-item:hover {
+    color: black;
+}
+
+a.dropdown-item:active {
+    background-color: gainsboro;
+    color: black;
 }
 
 h2 {
