@@ -3,8 +3,16 @@
     font-family: Courier, monospace;
 }
 
-.body {
-    background: #a0a8bd;
+html {
+    height:100vh;
+}
+
+.body {    
+    background-image: url("../images/dark-tire-1920x1080.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: auto;
     text-align: center;
 }
 

@@ -111,12 +111,10 @@ $(document).ready(function(){
                 if (this.player1Turn) {
                     this.nowRolling = this.player1;
                     dialogue = "Player 1 ";
-                    //$(".player-id").html("<span>1</span>");
                 }
                 else {
                     this.nowRolling = this.player2;
                     dialogue = "Player 2 ";
-                    //$(".player-id").html("<span>2<span>");
                 }
 
                 function movingPiece(obj) {
@@ -146,12 +144,12 @@ $(document).ready(function(){
                 function playerInfo(obj) {
                     if (die1!==die2 || obj.nowRolling.position===100) {
                         obj.player1Turn = !obj.player1Turn;
-                        // if (!this.player1Turn) {
-                        //     $(".player-id").html("<span>2<span>");
-                        // }
-                        // else {
-                        //     $(".player-id").html("<span>1</span>");
-                        // }
+                        if (dialogue === "Player 1 ") {
+                            $(".player-id").html("<span>2<span>").css("font-size", "1.1em");
+                        }
+                        else if (dialogue === "Player 2 ") {
+                            $(".player-id").html("<span>1</span>").css("font-size", "1.1em");
+                        }
                     }  
                     if (obj.gameover===true) {
                         $("#roll-message").html("<p>Game over!</p>");

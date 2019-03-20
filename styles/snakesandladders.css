@@ -8,8 +8,7 @@ html {
     height:100vh;
 }
 
-.body {
-    
+.body {    
     background-image: url("../images/light-wool-1920x1080.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,13 +22,9 @@ html {
     min-height: 60%;
 }
 
-/* #roll-title, #roll-message, #roll-jump {
-    font-size: .8em;
+.player-id {
+    font-size: 1.1em;
 }
-
-#roll-result {
-    font-size: .8em;
-} */
 
 .title {
     font-size: 1.8em;
