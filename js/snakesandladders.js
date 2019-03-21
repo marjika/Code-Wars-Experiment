@@ -1,4 +1,4 @@
-//Animate movement, indicate player turn, updated game board, styling, replay button, one or two players, dice don't roll on gameover
+//Beginning tokens, styling, one or two players, dice don't roll on gameover
 
 $(document).ready(function(){
 
@@ -80,6 +80,7 @@ $(document).ready(function(){
                 // }
                 else if (this.position+roll>=100) {
                     this.position = 100;
+                    gameOver();
                 }
 
             }
@@ -145,10 +146,12 @@ $(document).ready(function(){
                     if (die1!==die2 || obj.nowRolling.position===100) {
                         obj.player1Turn = !obj.player1Turn;
                         if (dialogue === "Player 1 ") {
-                            $(".player-id").html("<span>2<span>").css("font-size", "1.1em");
+                            $("#player-id").empty();
+                            $("#player-id").append("<span>2<span>");
                         }
                         else if (dialogue === "Player 2 ") {
-                            $(".player-id").html("<span>1</span>").css("font-size", "1.1em");
+                            $("#player-id").empty();
+                            $("#player-id").append("<span>1</span>");
                         }
                     }  
                     if (obj.gameover===true) {
@@ -183,7 +186,12 @@ $(document).ready(function(){
     let game = new SnakesLadders();
     game.myGame.drawBoard();
 
-    $("#roll").click(function() {
+    function gameOver() {
+        $("#roll").off('click');
+        $("#roll-result").html("<p>&nbsp;</p>");
+    }
+
+    function diceRoll() {
         $("#roll-result").html("<p>&nbsp;</p>");
         $("#roll-jump").html("<p>&nbsp;</p>");
 
@@ -194,8 +202,20 @@ $(document).ready(function(){
             $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
             game.myGame.play(diceOne, diceTwo);
         }
-        setTimeout(function(){ rollResult(); }, 800);
-        
+        setTimeout(function(){ rollResult(); }, 800);        
+    }
+
+    $("#roll").on('click', function() { diceRoll() } );
+
+    $(".replay-button").click(function() {
+        $("#roll-result").html("<p>&nbsp;</p>");
+        $("#roll-jump").html("<p>&nbsp;</p>");
+        $("#roll-message").html("<p>&nbsp;</p>");
+        $("#player-id").empty();
+        $("#player-id").append("<span>1</span>");
+        $("#roll").on('click',  function() { diceRoll() } );
+        game = new SnakesLadders();
+        game.myGame.drawBoard();
     });
 
 });
