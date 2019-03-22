@@ -41,17 +41,28 @@
                     }
                 });
             }
-
     </script>
 
 </head>
 
 <div class="body">
     <div class="container">
-
         <div class="row">
-            <div class="col-4" style="margin-top: 3%;">
-                <div class="game-info">
+            <div class="col-7">
+                <div class="canvas-container">
+                    <div class="title" style="margin-top: 2%; margin-bottom: 2%;">Snakes and Ladders</div> 
+                    <canvas id="myCanvas" width="564" height="564"
+                        style="background: url('images/snakesandladdersboard.jpg');">
+                        Your browser does not support the canvas element.
+                    </canvas>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="player-help">
+                    <button type="button" class="btn" id="directions">Directions</button>
+                    <button type="button" class="btn" id="computerPlayer">One Player</button>
+                </div>
+                <div class="game-info" style="margin-top: 3%;">
                     <div class="player-num" style="margin-top: 2%;">Player <span id="player-id">1</span> Roll</div>
                     <div id="roll-title">Click the dice to move your player.</div>
                     <button id="roll">
@@ -65,32 +76,17 @@
                     <div id="roll-jump" style="margin-top: 2%;">&nbsp;</div>
                 </div>
 
-                        
                 <div class="row" style="padding-top: 20px">
                     <div class="col-9">
-                        <div class="homeLink" style="float: left">
+                        <div class="homeLink" style="float: right">
                             <a href="index.html">Home</a>
                         </div>
-                        <div class="replay-button" style="float: left">Play&nbsp;Again</div>
+                        <div class="replay-button" style="float: right">Play&nbsp;Again</div>
                     </div>
                     <div class="col-3"></div>
-                </div>
-                
+                </div>                
             </div>
-
-            <div class="col-8">
-
-                <div class="canvas-container">
-                    <div class="title" style="margin-top: 2%; margin-bottom: 2%;">Snakes and Ladders</div> 
-                    <canvas id="myCanvas" width="564" height="564"
-                        style="background: url('images/snakesandladdersboard.jpg');">
-                        Your browser does not support the canvas element.
-                    </canvas>
-                </div>
-            </div>
-
         </div>
-
 
     </div>    
 </div>    
