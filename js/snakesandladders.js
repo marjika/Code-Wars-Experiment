@@ -1,4 +1,5 @@
-//Beginning tokens, styling, one or two players, dice don't roll on gameover
+//Beginning tokens, styling, one or two players, dice don't roll on gameover, no lag between reaching 100 and win
+//Fix brokenness
 
 $(document).ready(function(){
 
@@ -16,8 +17,8 @@ $(document).ready(function(){
                     ctx.fillStyle = '#cd3ed7';
                 }
                 if (this.position<1) {
-                    y=535.8;
-                    x=0;
+                    y=-50;
+                    x=-50;
                 }
                 else if (this.position>0 && this.position<11) {
                     y=535.8;
@@ -125,7 +126,7 @@ $(document).ready(function(){
                     
                     function frame() {
                         console.log(moving, die1+die2);
-                        if (moving>=(die1 + die2)) {
+                        if (obj.nowRolling.position>=100 || moving>=(die1 + die2)) {
                             clearInterval(myVar);
                             obj.nowRolling.checkBoard(board);
                             obj.drawBoard();
@@ -177,10 +178,7 @@ $(document).ready(function(){
             }
         }
 
-        this.myGame = new playGame();
-        
-                    
-
+        this.myGame = new playGame();                        
     };
 
     let game = new SnakesLadders();
@@ -213,9 +211,9 @@ $(document).ready(function(){
         $("#roll-message").html("<p>&nbsp;</p>");
         $("#player-id").empty();
         $("#player-id").append("<span>1</span>");
-        $("#roll").on('click',  function() { diceRoll() } );
         game = new SnakesLadders();
         game.myGame.drawBoard();
+        $("#roll").on('click',  function() { diceRoll() } );
     });
 
     $("#directions").click(function(){
