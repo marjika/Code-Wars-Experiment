@@ -1,11 +1,10 @@
-//Beginning tokens, styling, one or two players, dice don't roll on gameover, no lag between reaching 100 and win
-//Fix brokenness
+//styling, one or two players, dice don't roll on gameover, modify game board (Robyn)
 
 $(document).ready(function(){
 
-    function SnakesLadders() {
-        board = [[2,38],[7,14],[8,31],[15,26],[21,42],[28,84],[36,44],[51,67],[71,91],[78,98],[87,94],[16,6],[46,25],[49,11],[62,19],[64,60],[74,53],[89,68],[92,88],[95,75],[99,80]];
 
+        board = [[2,38],[7,14],[8,31],[15,26],[21,42],[28,84],[36,44],[51,67],[71,91],[78,98],[87,94],[16,6],[46,25],[49,11],[62,19],[64,60],[74,53],[89,68],[92,88],[95,75],[99,80]];
+                
         function Player(board) {
             this.position = 0;
             this.drawPlayer = function(ctx, val) {
@@ -102,7 +101,7 @@ $(document).ready(function(){
         }
 
         function playGame() {
-            console.log(board);
+            
             this.player1 = new Player(board);
             this.player2 = new Player(board);
             this.player1Turn = true;
@@ -120,7 +119,6 @@ $(document).ready(function(){
                 }
 
                 function movingPiece(obj) {
-                    console.log();
                     var moving=0;
                     var myVar = setInterval(frame, 400);
                     
@@ -169,7 +167,6 @@ $(document).ready(function(){
                 }
             }
             this.drawBoard = function() {
-                console.log("this.drawBoard function");
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, 564, 564);
@@ -178,11 +175,9 @@ $(document).ready(function(){
             }
         }
 
-        this.myGame = new playGame();                        
-    };
-
-    let game = new SnakesLadders();
-    game.myGame.drawBoard();
+    let game = new playGame();          
+    var computer = false;
+    game.drawBoard();
 
     function gameOver() {
         $("#roll").off('click');
@@ -192,13 +187,15 @@ $(document).ready(function(){
     function diceRoll() {
         $("#roll-result").html("<p>&nbsp;</p>");
         $("#roll-jump").html("<p>&nbsp;</p>");
+        var diceOne;
+        var diceTwo;
 
         function rollResult() {
-            var diceOne = Math.floor(Math.random() * 6) + 1;
-            var diceTwo = Math.floor(Math.random() * 6) + 1;
+            diceOne = Math.floor(Math.random() * 6) + 1;
+            diceTwo = Math.floor(Math.random() * 6) + 1;
             
             $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
-            game.myGame.play(diceOne, diceTwo);
+            game.play(diceOne, diceTwo);
         }
         setTimeout(function(){ rollResult(); }, 800);        
     }
@@ -206,14 +203,27 @@ $(document).ready(function(){
     $("#roll").on('click', function() { diceRoll() } );
 
     $(".replay-button").click(function() {
+        $("#roll").off('click');
         $("#roll-result").html("<p>&nbsp;</p>");
         $("#roll-jump").html("<p>&nbsp;</p>");
         $("#roll-message").html("<p>&nbsp;</p>");
         $("#player-id").empty();
         $("#player-id").append("<span>1</span>");
-        game = new SnakesLadders();
-        game.myGame.drawBoard();
+        for (var item in game) delete game[item];
+        computer = false;
+        game = new playGame();
+        game.drawBoard();
         $("#roll").on('click',  function() { diceRoll() } );
+    });
+
+    $("#computerPlayer").click(function() {
+        computer = !computer;
+        if (computer===true) {
+            $("#computerPlayer").html("<div>One Player✔</div>");
+        }
+        else if (computer===false) {
+            $("#computerPlayer").html("<div>One Player__</div>");
+        }
     });
 
     $("#directions").click(function(){

@@ -135,3 +135,12 @@ a {
 #directions {
     cursor: help;
 }
+
+#computerPlayer {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* #one {
+    max-width: 30%;
+} */
