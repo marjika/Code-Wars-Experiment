@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
 
-
         board = [[2,38],[7,14],[8,31],[15,26],[21,42],[28,84],[36,44],[51,67],[71,91],[78,98],[87,94],[16,6],[46,25],[49,11],[62,19],[64,60],[74,53],[89,68],[92,88],[95,75],[99,80]];
                 
         function Player(board) {
@@ -84,16 +83,16 @@ $(document).ready(function(){
                 }
 
             }
-            this.checkBoard = function(board) {
+            this.checkBoard = function(board, dialogue) {
                 
                 for (var i= 0; i<board.length; i++) {
                     if (this.position===board[i][0]) {
                         this.position=board[i][1];
                         if (i<=10) {
-                            $("#roll-jump").html("<p>Congratulations! You found a ladder.</p>");
+                            $("#roll-jump").html("<p>Wow! " + dialogue + " found a ladder.</p>");
                         }
                         else if (i>10) {
-                            $("#roll-jump").html("<p>Oops! You landed on a snake.</p>");
+                            $("#roll-jump").html("<p>Oops! " + dialogue + " landed on a snake.</p>");
                         }
                     }
                 }
@@ -115,7 +114,12 @@ $(document).ready(function(){
                 }
                 else {
                     this.nowRolling = this.player2;
-                    dialogue = "Player 2 ";
+                    if (!computer) {
+                        dialogue = "Player 2 ";
+                    }
+                    else {
+                        dialogue = "Computer ";
+                    }
                 }
 
                 function movingPiece(obj) {
@@ -126,9 +130,18 @@ $(document).ready(function(){
                         console.log(moving, die1+die2);
                         if (obj.nowRolling.position>=100 || moving>=(die1 + die2)) {
                             clearInterval(myVar);
-                            obj.nowRolling.checkBoard(board);
+                            obj.nowRolling.checkBoard(board, dialogue);
                             obj.drawBoard();
                             playerInfo(obj);
+                            console.log("end of movement, computer player on: " + computer);
+                            if (computer && (dialogue === "Player 1 ") && (die1!==die2)) {
+                                console.log("check computer, player one turn: " + obj.player1Turn);
+                                setTimeout(function(){ checkTurn(); }, 1500);
+                            }
+                            else if (computer && (dialogue === "Computer ") && (die1===die2)) {
+                                console.log("check computer, player one turn: " + obj.player1Turn);
+                                setTimeout(function(){ checkTurn(); }, 1500);
+                            }
                         }
                         else {
                             obj.nowRolling.move(1);
@@ -148,7 +161,7 @@ $(document).ready(function(){
                             $("#player-id").empty();
                             $("#player-id").append("<span>2<span>");
                         }
-                        else if (dialogue === "Player 2 ") {
+                        else if ((dialogue === "Player 2 ") || (dialogue === "Computer ")) {
                             $("#player-id").empty();
                             $("#player-id").append("<span>1</span>");
                         }
@@ -194,10 +207,17 @@ $(document).ready(function(){
             diceOne = Math.floor(Math.random() * 6) + 1;
             diceTwo = Math.floor(Math.random() * 6) + 1;
             
-            $("#roll-result").html("<p>You rolled "+ diceOne + " and " + diceTwo + ".</p>");
+            $("#roll-result").html("<p>Roll result: "+ diceOne + " and " + diceTwo + ".</p>");
             game.play(diceOne, diceTwo);
         }
         setTimeout(function(){ rollResult(); }, 800);        
+    }
+
+    function checkTurn() {
+        if (!game.gameover) {
+            console.log("computer player rolls");
+            diceRoll();
+        };
     }
 
     $("#roll").on('click', function() { diceRoll() } );
@@ -211,6 +231,7 @@ $(document).ready(function(){
         $("#player-id").append("<span>1</span>");
         for (var item in game) delete game[item];
         computer = false;
+        $("#computerPlayer").html("<div>One Player__</div>");
         game = new playGame();
         game.drawBoard();
         $("#roll").on('click',  function() { diceRoll() } );
@@ -218,6 +239,7 @@ $(document).ready(function(){
 
     $("#computerPlayer").click(function() {
         computer = !computer;
+        console.log(computer);
         if (computer===true) {
             $("#computerPlayer").html("<div>One Player✔</div>");
         }
