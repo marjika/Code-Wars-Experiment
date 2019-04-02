@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Christmas Tree Draw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/bus.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/tree.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Life+Savers:700&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/tree.css">
+
+</head>
+
+<div class="body">
+    <div class="container">
+        <div class="row" style="margin: 1em;">
+            <div class="col-12"
+                <h1 style="font-size: 40px; color: white;">Personalize your ASCII tree</h1>
+            </div>
+        </div>
+       <div class="row">
+            <div class="col-6">
+                <div class="input-container"> 
+                    <div class="input-title">Enter rows in your tree</div> 
+                    <input 
+                        type="text" 
+                        class="input" 
+                        id="rows-input"
+                        title="tree-info"
+                        placeholder="3 or More">
+                    <div class="input-title">Enter any letters or symbols you want on the tree</div> 
+                        <input 
+                            type="text" 
+                            class="input" 
+                            id="symbols-input"
+                            title="tree-info"
+                            placeholder="At least 1">
+                    <div>
+                        <button id="tree-input">Draw</button>
+                    </div>
+                </div>
+                <div class="homeLink">
+                    <a href="index.html">Home</a>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="result-container">
+                    <div class="title">Result</div> 
+                    <span id="result"></span>
+                </div>
+            </div>
+        </div>
+    </div>     
+</div>
+
+</html>

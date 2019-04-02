@@ -1,4 +1,4 @@
-//styling, one or two players, computer player rolls the gif, dice don't roll on gameover, modify game board (Robyn)
+//styling, dice don't roll on gameover
 
 $(document).ready(function(){
 
