@@ -16,14 +16,19 @@ $(document).ready(function(){
                 answer = answer + charsStr.slice(0, -1) + '\n';
             }
             answer = answer + (" ".repeat(n-1) + '|' + '\n').repeat(Math.floor(n/3));
-            return answer.slice(0,-1);
+            console.log(answer.slice(0,-1));
+            $("#result").append(answer.slice(0,-1));
+            //return answer.slice(0,-1);
         }
 
         $('#tree-input').click(function(){
+            $("#result").empty();
             var rows = parseInt($("#rows-input").val().trim());
             var decor = $("#symbols-input").val().trim();
             console.log(rows,decor);
-            customChristmasTree(rows, decor);
+            customChristmasTree(decor, rows);
+            //console.log(userTree);
+        
             $("#rows-input").val('');
             $("#symbols-input").val('');
         });

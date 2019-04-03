@@ -1,6 +1,6 @@
 * {
     text-align: center;
-    font-family: 'Life Savers', cursive;
+    font-family: 'Patrick Hand', cursive;
     font-size: 22px;
 }
 
@@ -15,4 +15,36 @@ html {
     height: 100vh;
     overflow: auto;
     text-align: center;
+}
+
+.input-container, .result-container {
+    margin: 30px auto 0;
+    width: 100% auto;
+    font-size: 36px;
+    color: #f1f2f4;
+    text-align: center;
+    background: rgba(220, 220, 220, 0.30);
+    line-height: 1.15;
+    border: none;
+    border-radius: 15px;
+    padding: 3%;
+}
+
+.input-title, input {
+    margin-bottom: .6em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: .7em;
+}
+
+.result-container .title {
+    color: #f1f2f4;
+}
+
+
+#result {
+    font-size: 24px;
+    line-height: .9;
+    text-align: center;
+    white-space:pre;
 }
