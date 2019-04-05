@@ -41,10 +41,30 @@ html {
     color: #f1f2f4;
 }
 
+.result-container {
+    min-height: 84%;
+}
+
+.title {
+    font-size: 24px;
+}
 
 #result {
+    /* font-family: Courier, monospace; */
     font-size: 24px;
     line-height: .9;
     text-align: center;
     white-space:pre;
 }
+
+input { 
+    border-radius: 12px;
+}
+
+input#symbols-input {
+    min-width: 70%;
+}
+
+/* input:-moz-placeholder, input:-ms-input-placeholder, input::-webkit-input-placeholder {
+    font-size: .7em;
+} */
