@@ -33,7 +33,7 @@
                         class="input" 
                         id="rows-input"
                         title="tree-info"
-                        placeholder="3 or More">
+                        placeholder="From 3 to 33">
                     <div class="input-title">How will you decorate the tree?</div> 
                         <input 
                             type="text" 
@@ -43,8 +43,7 @@
                             placeholder="Symbols, Letters, or Numbers">
                     <div style="margin-bottom: .6em;">
                         <button id="tree-input">Draw</button>
-                    </div>
-                    <div>
+                        <span id="spaceSpan">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <button id="homeLink"><a href="index.html">Home</a></button>
                     </div>
                 </div>
@@ -55,6 +54,14 @@
                     <div id="result"></div>
                 </div>
             </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div id="modal-caption"></div>
+                <button id="close">Close</button>
+            </div>    
         </div>
     </div>     
 </div>

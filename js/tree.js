@@ -26,16 +26,34 @@ $(document).ready(function(){
             console.log($("#rows-input").val());
             if (Number.isInteger(Math.abs(Math.floor(parseInt($("#rows-input").val().trim()))))) {
                 var rows = Math.abs(Math.floor(parseInt($("#rows-input").val().trim())));
-                var decor = $("#symbols-input").val().trim();
-                console.log(rows,decor);
-                customChristmasTree(decor, rows);
-                console.log(rows);
+                if (rows<34) {
+                    var decor = $("#symbols-input").val().trim();
+                    console.log(rows,decor);
+                    customChristmasTree(decor, rows);
+                }
+                else {
+                    displayModal("Please enter an integer from 3 to 33 for the number of rows.")
+                } 
             }
             else {
-                alert("Please enter an integer for the number of rows.")
+                displayModal("Please enter an integer for the number of rows.")
             }        
             $("#rows-input").val('');
             $("#symbols-input").val('');
         });
+
+        function displayModal(text) {
+            $("#modal-caption").html("<p>" + text + "</p>");
+            $("#restart-button").show();
+            $("#myModal").show();
+        }
+
+        // Get the element that closes the modal
+        var closeButton = document.getElementById("close");
+
+        // When the user clicks on closeButton, close the modal
+        closeButton.onclick = function() {
+            $("#myModal").hide();
+        }
 
 });
