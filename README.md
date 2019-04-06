@@ -8,6 +8,6 @@ Codewars (https://www.codewars.com) is a site designed to help programmers pract
 
 ##### About this Application
 
-Deployed at "https://marjika.github.io/Code-Wars-Experiment/".
+This repository was created and is maintained by me, Marjika Howarth, with ideas from Codewars, and is deployed at "https://marjika.github.io/Code-Wars-Experiment/".
 
 
