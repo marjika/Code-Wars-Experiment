@@ -51,7 +51,6 @@ html {
 }
 
 #result {
-    /* font-family: Courier, monospace; */
     font-size: 24px;
     line-height: .9;
     text-align: center;
@@ -69,6 +68,11 @@ input#symbols-input {
 
 #homeLink, #tree-input {
     border-radius: 10px;
+    cursor: pointer;
+}
+
+#tree-input:hover, #homeLink:hover {
+    border: 2px solid black;
 }
 
 a, a:hover {
@@ -93,7 +97,7 @@ a, a:hover {
   
   /* Modal Content */
   .modal-content {
-    background-color: #fefefe;
+    background-image: url("../images/prettyModal.jpeg");
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -103,14 +107,14 @@ a, a:hover {
   
 
 #modal-caption {
-    font-size: 28px;
+    font-size: 40px;
 }
 
 #close {
     font-size: inherit;
     color: black;
-    max-width: 40%;;
-    padding: 10px 24px;
+    border: 2px solid black;
+    max-width: 30%;
     border-radius: 12px;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -118,11 +122,8 @@ a, a:hover {
   }
 
   #close:hover, #close:focus {
-    color: white;
+    color: darkslategray;
+    border: 2px solid darkslategray;
     text-decoration: none;
     cursor: pointer;
   }
-/* 
-#spaceSpan {
-    min-width: 1%;
-} */
